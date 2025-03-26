@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+        <!-- icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link href="style.css" rel="stylesheet">
 
+        <title>Up All Night</title>
     </head>
 
     <body>
-        <!-- TODO: Desktop Navigation (style with hidden vs shown) -->
-
-        <!-- TODO: Mobile Navigation -->
+        <div class="topnav">
+            <a href="#main">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <div class="spacer"></div>
+            <div class="nav-dropdown">
+                <button href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a href="#main">Main</a>
+                    <a href="#interviews">Interviews</a>
+                    <a href="#about">About</a>
+                </div>
+            </div>
+        </div>
         
-        <h1>Up All Night</h1>
-        <h3>with Tim Youd</h3>
+        <h1 id="main-title">Up All Night</h1>
+        <h3 id="sub-title">with Tim Youd</h3>
 
-        <img id="book_cover" src="images/book_cover.jpg"/>
+        <img id="book-cover" src="images/book_cover.jpg"/>
         
-        <!-- TODO: Interviews Row -->
-        <div>
-
+        <!-- Interviews Row -->
+        <div id="interview-div">
+            <div class="interview-row-nav-button">
+                <button onclick="moveInterviewRow(true)"><</button>
+            </div>
+            <!-- This row will be filled in by main.js -->
+            <div id="interview-row"></div>
+            <div class="interview-row-nav-button">
+                <button onclick="moveInterviewRow(false)">></button>
+            </div>
         </div>
 
         <button class="filled-button">View All Interviews</button>
@@ -25,12 +50,14 @@
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
 
-        <iframe id="kwur-embed" src="https://mixlr.com/users/4072220/embed" width="80%" height="180px" frameborder="no" marginheight="0" marginwidth="0"></iframe>
+        <iframe id="kwur-embed" src="https://mixlr.com/users/4072220/embed" frameborder="no"></iframe>
 
-        <div id="more-info-button-div">
-            <button class="stroke-button">More About Tim Youd</button>
+        <div id="more-info-div">
+            <button class="stroke-button" txt="More About Tim Youd">More About Tim Youd</button>
 
-            <button class="stroke-button">More About the Elkin Show at Olin</button>
+            <button class="stroke-button" txt="More About the Elkin Show at Olin">More About the Elkin Show at Olin</button>
         </div>
+
+        <script src="main.js"></script>
     </body>
 </html>
