@@ -1,14 +1,16 @@
 :root {
     --primary-color: rgb(5, 5, 72);
     --primary-color-hover: rgb(84, 84, 184);
-    --secondary-color: lightskyblue;
+    --secondary-color: white;
 
-    --horizontal-margin: 100px;
+    --horizontal-margin: 10%;
 
     /* NAVBAR */
     --navbar-padding: 20px 30px;
+    --navbar-font-size: 40px;
 
     /* BUTTONS */
+    --button-font-size: 22px;
     --button-padding: 24px 34px;
     --button-border-radius: 18px;
     --button-fill-radius: 16px;
@@ -30,15 +32,19 @@ button {
 .spacer {
     flex-grow: 1;
 }
+.hidden {
+    display: none !important;
+}
 
 /* NAVBAR */
 .topnav {
     display: flex;
+    align-content: stretch;
 }
 .topnav > a {
     color: var(--primary-color);
     text-decoration: none;
-    font-size: 3vw;
+    font-size: var(--navbar-font-size);
     display: block;
     padding: var(--navbar-padding);
 }
@@ -50,16 +56,17 @@ button {
     overflow: hidden;
 }
 .nav-dropdown > button {
+    height: 100%;
     border: none;
     outline: none;
     color: var(--primary-color);
     background-color: inherit;
 
-    font-size: 3vw;
+    font-size: var(--navbar-font-size);;
     padding: var(--navbar-padding);
     margin: 0;
 }
-.dropdown-container {
+#dropdown-container {
     display: block;
     position: absolute;
     right: 30px;
@@ -69,7 +76,7 @@ button {
     box-shadow: 0px 8px 14px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-.dropdown-container a {
+#dropdown-container a {
     float: none;
     color: var(--primary-color);
     padding: 14px 24px;
@@ -85,18 +92,15 @@ button {
     background-color: #ddd;
     color: var(--primary-color-hover);
 }
-.dropdown:hover .dropdown-container {
-    display: block;
-}
 
-#main-title {
-    font-size: 6.5vw;
+.main-title {
+    font-size: 54px;
     font-weight: bolder;
     color: var(--primary-color);
-    margin: 50px 0 0;
+    margin: 0;
 }
-#sub-title {
-    font-size: 2.5vw;
+.sub-title {
+    font-size: 28px;
     font-weight: lighter;
     margin: 10px auto 50px;
 }
@@ -176,14 +180,18 @@ button {
     object-fit: cover;
 }
 
+#view-all-interviews-button {
+    padding: 20px 50px;
+}
+
 #main-description {
     margin: 40px var(--horizontal-margin) 20px;
 }
 
 #kwur-embed {
-    width: 80%; 
+    width: 80%;
+    margin: 20px auto 40px;
     height: 180px;
-    margin: 20px var(--horizontal-margin);
     border-radius: 10px;
 }
 
@@ -194,34 +202,128 @@ button {
     justify-content: center;
     align-items: stretch;
 
-    margin: 0 300px;
-    gap: 30px;
+    margin: 0 10%;
 }
 #more-info-div button {
     flex: 1 0;
+    margin: 10px 20px;
+}
+
+
+
+/* INTERVIEW PAGE */
+#interview-container {
+    margin: 40px var(--horizontal-margin);
+    
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.interview-block {
+    flex: 1 0 400px;
+    padding: 30px;
+
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+
+    transition: box-shadow var(--button-transition-time),
+        transform var(--button-transition-time);
+}
+.interview-block:hover {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translate(-2px, -2px);
+}
+.interview-title-div {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+}
+.interview-name {
+    text-align: left;
+    margin: 0;
+}
+.interview-date {
+    flex-grow: 1;
+
+    text-align: right;
+    font-weight: lighter;
+    font-style: italic;
+    margin: 0;
+}
+.interview-video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 58%;
+    margin: 20px 0;
+}
+.interview-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 10px;
+}
+.interview-button-container {
+    margin: 20px 0 0;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    gap: 30px;
+}
+.interview-button-container button {
+    flex: 1 1 0;
+    font-size: 18px;
 }
 
 
 
 /* General button styling */
 .filled-button {
-    font-size: 2vw;
-    color: white;
+    font-size: var(--button-font-size);
+    position: relative;
+    overflow: hidden;
+
+    color: var(--secondary-color);
     background-color: var(--primary-color);
 
     padding: var(--button-padding);
-    border: 0px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
     border-radius: var(--button-border-radius);
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 
-    transition: transform var(--button-fast-transition-time),
-        box-shadow var(--button-fast-transition-time),
-        background-color var(--button-fast-transition-time);
+    transition: color var(--button-transition-time),
+        transform var(--button-fast-transition-time),
+        box-shadow var(--button-fast-transition-time);
+}
+.filled-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 100%;
+    border-radius: var(--button-fill-radius);
+
+    background-color: var(--secondary-color);
+    transition: all var(--button-transition-time);
+    z-index: -1;
+    transform: translateX(-100%);
+}
+.filled-button:hover::before {
+    transform: translateX(0%);
 }
 .filled-button:hover {
+    color: var(--primary-color);
     transform: translate(-2px, -2px);
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-    background-color: var(--primary-color-hover);
 }
 .filled-button:active {
     transform: translate(-1px, -1px);
@@ -229,11 +331,10 @@ button {
 }
 
 .stroke-button {
-    font-size: 2vw;
+    font-size: var(--button-font-size);
     position: relative;
     overflow: hidden;
 
-    font-size: large;
     color: var(--primary-color);
     background-color: rgba(255, 255, 255, 0);
 
@@ -251,7 +352,7 @@ button {
     position: absolute;
     top: 0;
     left: 0;
-    width: 110%;
+    width: 105%;
     height: 100%;
     border-radius: var(--button-fill-radius);
 
@@ -264,9 +365,9 @@ button {
     transform: translateX(0%);
 }
 .stroke-button:hover {
-    color: white;
+    color: var(--secondary-color);
     transform: translate(-2px, -2px);
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
 }
 .stroke-button:active {
     transform: translate(-1px, -1px);

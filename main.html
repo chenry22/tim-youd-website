@@ -5,30 +5,31 @@
         <!-- icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link href="style.css" rel="stylesheet">
+        <script src="scripts/main.js"></script>
 
         <title>Up All Night</title>
     </head>
 
     <body>
         <div class="topnav">
-            <a href="#main">
+            <a href="#">
                 <i class="fa-solid fa-house"></i>
             </a>
             <div class="spacer"></div>
             <div class="nav-dropdown">
-                <button href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <button href="javascript:void(0);" class="icon" onclick="toggleNavDropdown()">
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <div class="dropdown-container">
-                    <a href="#main">Main</a>
-                    <a href="#interviews">Interviews</a>
-                    <a href="#about">About</a>
+                <div id="dropdown-container" class="hidden">
+                    <a href="#">Main</a>
+                    <a href="/interviews.html">Interviews</a>
+                    <a href="/about.html">About</a>
                 </div>
             </div>
         </div>
         
-        <h1 id="main-title">Up All Night</h1>
-        <h3 id="sub-title">with Tim Youd</h3>
+        <h1 class="main-title">Up All Night</h1>
+        <h3 class="sub-title">with Tim Youd</h3>
 
         <img id="book-cover" src="images/book_cover.jpg"/>
         
@@ -44,7 +45,7 @@
             </div>
         </div>
 
-        <button class="filled-button">View All Interviews</button>
+        <button id="view-all-interviews-button" class="filled-button" onclick="location.href='interviews.html'">View All Interviews</button>
 
         <p id="main-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -54,10 +55,7 @@
 
         <div id="more-info-div">
             <button class="stroke-button" txt="More About Tim Youd">More About Tim Youd</button>
-
             <button class="stroke-button" txt="More About the Elkin Show at Olin">More About the Elkin Show at Olin</button>
         </div>
-
-        <script src="main.js"></script>
     </body>
 </html>

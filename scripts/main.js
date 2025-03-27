@@ -58,9 +58,13 @@ function moveInterviewRow(left) {
         currentInterviewBubble += offset;
         currentInterviewBubble = Math.min(bubbles.length - 1, currentInterviewBubble);
     }
-    
+
     bubbles[currentInterviewBubble].scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-  }
+}
+
+function toggleNavDropdown() {
+    document.getElementById("dropdown-container").classList.toggle("hidden");
+}
 
 document.addEventListener("DOMContentLoaded", (event) => {
     createInterviewBubbles();
