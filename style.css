@@ -2,8 +2,9 @@
     --primary-color: rgb(5, 5, 72);
     --primary-color-hover: rgb(84, 84, 184);
     --secondary-color: white;
+    --tertiary-color: lightblue;
 
-    --horizontal-margin: 10%;
+    --horizontal-margin: 8%;
 
     /* NAVBAR */
     --navbar-padding: 20px 30px;
@@ -20,11 +21,11 @@
 }
 
 html {
-    font-family: 'Inter';
+    font-family: "Open Sans", sans-serif;
     text-align: center;
 }
 body {
-    padding-bottom: 100px;
+    padding-bottom: 140px;
 }
 button {
     cursor: pointer;
@@ -35,6 +36,8 @@ button {
 .hidden {
     display: none !important;
 }
+
+
 
 /* NAVBAR */
 .topnav {
@@ -66,84 +69,234 @@ button {
     padding: var(--navbar-padding);
     margin: 0;
 }
-#dropdown-container {
-    display: block;
-    position: absolute;
-    right: 30px;
-    min-width: 160px;
 
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 14px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+@media only screen and (max-width: 800px) {
+    #dropdown-container {
+        display: block;
+        position: absolute;
+        right: 40px;
+        width: 160px;
+
+        background-color: #e9f0ff;
+        box-shadow: 0x 8px 18px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    #dropdown-container a {
+        float: none;
+        color: var(--primary-color);
+        padding: 18px 24px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
 }
-#dropdown-container a {
-    float: none;
-    color: var(--primary-color);
-    padding: 14px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+
+@media only screen and (min-width: 800px) {
+    #dropdown-container {
+        display: block;
+        position: absolute;
+        right: 40px;
+        width: 200px;
+
+        background-color: #e9f0ff;
+        box-shadow: 0x 8px 18px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    #dropdown-container a {
+        float: none;
+        color: var(--primary-color);
+        font-size: 18px;
+        font-weight: 400;
+
+        padding: 24px 30px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
 }
 .topnav a:hover, .nav-dropdown button:hover {
     color: var(--primary-color-hover);
     cursor: pointer;
 }
-.dropdown-container a:hover {
-    background-color: #ddd;
+#dropdown-container a:hover {
+    background-color: #ecf6ff;
     color: var(--primary-color-hover);
 }
 
-.main-title {
-    font-size: 54px;
-    font-weight: bolder;
-    color: var(--primary-color);
-    margin: 0;
-}
-.sub-title {
-    font-size: 28px;
-    font-weight: lighter;
-    margin: 10px auto 50px;
+
+
+/* MAIN PAGE */
+@media only screen and (max-width: 800px){
+    .main-title {
+        font-size: 60px;
+        font-weight: bolder;
+        color: var(--primary-color);
+        margin: 0;
+    }
+    .sub-title {
+        font-size: 26px;
+        font-weight: lighter;
+        margin: 0 auto;
+    }
+    #book-cover {
+        display: block;
+        width: 45%;
+        margin: 0 auto;
+    }
+
+    #split-description, #lower-desc, #lower-kwur-embed {
+        display: none;
+    }
+    #lower-split-desc {
+        margin: 0 var(--horizontal-margin) 34px;
+    }
+    #cover-div {
+        margin-top: 30px;
+    }
+    .main-description {
+        margin: 20px 0;
+        text-align: start;
+        text-indent: 50px;
+        font-size: 16px;
+    }
+    .kwur-embed {
+        width: 100%;
+        margin: 10px auto;
+        height: 180px;
+        border-radius: 10px;
+    }
 }
 
-#book-cover {
-    display: block;
-    width: 40%;
-    margin: 0 auto;
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
+    .main-title {
+        font-size: 68px;
+        font-weight: bolder;
+        color: var(--primary-color);
+        margin: 0;
+    }
+    .sub-title {
+        font-size: 28px;
+        font-weight: lighter;
+        margin: 0 auto;
+    }
+    #book-cover {
+        display: block;
+        width: 35%;
+        margin: 0 auto;
+    }
+
+    #split-description, #lower-split-desc, #lower-split-kwur-embed {
+        display: none;
+    }
+    #lower-desc {
+        margin: 0 var(--horizontal-margin);
+    }
+
+    #cover-div {
+        margin-top: 30px;
+    }
+    .main-description {
+        margin: 20px 0;
+        text-align: start;
+        text-indent: 50px;
+        font-size: 16px;
+    }
+    .kwur-embed {
+        width: 80%;
+        margin: 10px auto 40px;
+        height: 180px;
+        border-radius: 10px;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .main-title {
+        font-size: 80px;
+        font-weight: bolder;
+        color: var(--primary-color);
+        margin: 0;
+    }
+    .sub-title {
+        font-size: 30px;
+        font-weight: lighter;
+        margin: 10px auto 0;
+    }
+    #book-cover {
+        display: block;
+        width: 40%;
+        margin: 0 auto;
+    }
+
+    #lower-desc, #lower-kwur-embed, #lower-split-desc, #lower-split-kwur-embed {
+        display: none;
+    }
+    
+    #cover-div {
+        display: flex;
+        margin: 40px var(--horizontal-margin);
+        align-items: center;
+        gap: 50px;
+    }
+    #split-description {
+        margin: 0;
+    }
+    .main-description {
+        margin: 0 0 20px;
+        text-align: start;
+        text-indent: 50px;
+        font-size: 17px;
+    }
+    .kwur-embed {
+        margin-top: 20px;
+        width: 100%;
+        height: 180px;
+        border-radius: 10px;
+    }
 }
 
-/* Should be used for larger screens */
 #interview-div {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 
-    gap: 40px;
-    padding: 50px 0 40px;
+    padding: 30px 0 20px;
     margin: 0 var(--horizontal-margin);
 }
-.interview-row-nav-button button {
-    flex-shrink: 1;
-    width: 50px;
-    height: 50px;
-
-    font-size: large;
-    font-weight: bolder;
-
-    color: var(--primary-color);
-    background-color: white;
-    border: 3px solid var(--primary-color);
-    border-radius: 50%;
-
-    transition: color var(--button-fast-transition-time), 
-        border-color var(--button-fast-transition-time);
+@media only screen and (max-width: 850px){
+    .interview-row-nav-button button {
+        display: none;
+    }
 }
-.interview-row-nav-button button:hover {
-    color: var(--primary-color-hover);
-    border-color: var(--primary-color-hover);
-}
-.interview-row-nav-button button:active {
-    transform: translateY(2px);
+@media only screen and (min-width: 850px){
+    .interview-row-nav-button button {
+        flex-shrink: 1;
+        width: 50px;
+        height: 50px;
+    
+        font-size: large;
+        font-weight: bolder;
+    
+        color: var(--primary-color);
+        background-color: white;
+        border: 2px solid var(--primary-color);
+        border-radius: 50%;
+    
+        transition: color var(--button-fast-transition-time), 
+            border-color var(--button-fast-transition-time);
+    }
+    .left {
+        margin-right: 20px;
+    }
+    .right {
+        margin-left: 20px;
+    }
+    .interview-row-nav-button button:hover {
+        color: var(--primary-color-hover);
+        border-color: var(--primary-color-hover);
+    }
+    .interview-row-nav-button button:active {
+        transform: translateY(2px);
+    }
 }
 
 #interview-row {
@@ -153,11 +306,11 @@ button {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 30px;
+    gap: 24px;
     width: 70%;
 
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow-x: scroll;
+    overflow-y: visible;
     scrollbar-width: none;
 }
 #interview-row::-webkit-scrollbar {
@@ -169,50 +322,74 @@ button {
     width: 140px;
     font-size: 18px;
 }
+.interview-bubble:hover .interview-thumbnail {
+    box-shadow: 0px 0px 16px rgba(0, 0, 139, 0.1);
+}
+.interview-bubble:hover .interview-card {
+    box-shadow: 0px 0px 16px rgba(0, 0, 139, 0.1);
+}
 .interview-thumbnail {
-    display: block;
-    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
     width: 140px;
-    background-color: lightblue;
+    height: 140px;
 
-    border: 3px solid var(--secondary-color); 
+    background-color: var(--tertiary-color);
+    border: 2px solid var(--tertiary-color); 
     border-radius: 50%;
     object-fit: cover;
+    transition: box-shadow var(--button-fast-transition-time);
+}
+.interview-card {
+    position: static;
+    padding: 6px 8px;
+    transform: translateY(-14px);
+
+    background-color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    transition: box-shadow var(--button-fast-transition-time);
 }
 
 #view-all-interviews-button {
-    padding: 20px 50px;
+    padding: 28px 54px;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
-#main-description {
-    margin: 40px var(--horizontal-margin) 20px;
+@media only screen and (max-width: 800px){
+    #more-info-div {
+        min-height: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+
+        margin: 0 10%;
+    }
 }
+@media only screen and (min-width: 800px){
+    #more-info-div {
+        min-height: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
 
-#kwur-embed {
-    width: 80%;
-    margin: 20px auto 40px;
-    height: 180px;
-    border-radius: 10px;
-}
-
-#more-info-div {
-    height: 150px;
-
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-
-    margin: 0 10%;
+        margin: 20px 20%;
+    }
 }
 #more-info-div button {
     flex: 1 0;
-    margin: 10px 20px;
+    margin: 10px 15px;
 }
 
 
 
 /* INTERVIEW PAGE */
-#interview-container {
+#interviews-loading-error {
+    margin-top: 20px;
+}
+
+#interviews-container {
     margin: 40px var(--horizontal-margin);
     
     display: flex;
@@ -223,7 +400,7 @@ button {
     gap: 40px;
 }
 .interview-block {
-    flex: 1 0 400px;
+    flex: 1 0 350px;
     padding: 30px;
 
     border: 2px solid var(--primary-color);
@@ -271,16 +448,35 @@ button {
 
     border-radius: 10px;
 }
+.interview-description {
+    padding: 10px 0;
+}
 .interview-button-container {
     margin: 20px 0 0;
     display: flex;
     justify-content: stretch;
-    align-items: center;
+    align-items: stretch;
     gap: 30px;
 }
 .interview-button-container button {
     flex: 1 1 0;
     font-size: 18px;
+}
+
+.countdown-container {
+    margin: 50px 0;
+}
+.countdown-label {
+    font-weight: lighter;
+    font-size: 20px;
+    font-style: italic;
+    margin: 0;
+    padding-bottom: 12px;
+}
+.countdown-timer {
+    font-weight: bolder;
+    font-size: 48px;
+    margin: 0;
 }
 
 
@@ -303,7 +499,7 @@ button {
         transform var(--button-fast-transition-time),
         box-shadow var(--button-fast-transition-time);
 }
-.filled-button::before {
+/* .filled-button::before {
     content: "";
     position: absolute;
     top: 0;
@@ -319,9 +515,9 @@ button {
 }
 .filled-button:hover::before {
     transform: translateX(0%);
-}
+} */
 .filled-button:hover {
-    color: var(--primary-color);
+    /* color: var(--primary-color); */
     transform: translate(-2px, -2px);
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
 }
@@ -373,3 +569,37 @@ button {
     transform: translate(-1px, -1px);
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
+
+
+
+/* LOADER */
+.lds-dual-ring {
+    margin-top: 50px;
+    color: var(--primary-color-hover);
+}
+.lds-dual-ring, .lds-dual-ring:after {
+  box-sizing: border-box;
+}
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+
+  border-radius: 50%;
+  border: 6.4px solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

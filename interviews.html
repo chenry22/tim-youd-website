@@ -4,6 +4,11 @@
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
         <!-- icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
         <link href="style.css" rel="stylesheet">
         <script src="scripts/interviews.js"></script>
 
@@ -23,16 +28,23 @@
                 <div id="dropdown-container" class="hidden">
                     <a href="/main.html">Main</a>
                     <a href="#">Interviews</a>
-                    <a href="/about.html">About</a>
+                    <!-- <a href="/about.html">About</a> -->
                 </div>
             </div>
         </div>
 
-        <h1 class="main-title">Interviews</h1>
+        <h1 class="main-title">All Interviews</h1>
+
+        <!-- Loader -->
+        <div class="lds-dual-ring" id="interviews-loader"></div>
+
+        <!-- Failure, allow reload? -->
+         <div class="hidden" id="interviews-loading-error">Internal Error.</div>
 
         <!-- This will be filled in by interviews.jss-->
-        <div id="interview-container">
-            <div class="interview-block">
+        <div class="hidden" id="interviews-container">
+            <!-- Interview Block Template -->
+            <!-- <div class="interview-block">
                 <div class="interview-title-div">
                     <h1 class="interview-name">Interviewee Name</h1>
                     <h4 class="interview-date">April xx, 2025</h4>
@@ -50,27 +62,7 @@
                     <button class="filled-button">Full Interview</button>
                     <button class="stroke-button">Artist Bio</button>
                 </div>
-            </div>
-
-            <div class="interview-block">
-                <div class="interview-title-div">
-                    <h1 class="interview-name">Interviewee Name</h1>
-                    <h4 class="interview-date">April xx, 2025</h4>
-                </div>
-                <div class="interview-video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/pIlqhkUaHjQ?si=s_ysE5KkGQMwoRAt"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen></iframe>
-                </div>
-                <p class="interview-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <div class="interview-button-container">
-                    <button class="filled-button">Full Interview</button>
-                    <button class="stroke-button">Artist Bio</button>
-                </div>
-            </div>
+            </div> -->
         </div>
     </body>
 </html>

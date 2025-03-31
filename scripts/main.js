@@ -1,4 +1,4 @@
-const names = ["Interviewee 1", "Interviewee 2", "Interviewee 3", "Interviewee 4", "Interviewee 5", 
+const names = ["Interviewee 1 TEST EST", "Interviewee 2", "Interviewee 3", "Interviewee 4", "Interviewee 5", 
     "Interviewee 6", "Interviewee 7", "Interviewee 8", "Interviewee 9", "Interviewee 10",
     "Interviewee 11", "Interviewee 12", "Interviewee 13", "Interviewee 14", "Interviewee 15",
     "Interviewee 16", "Interviewee 17", "Interviewee 18", "Interviewee 19", "Interviewee 20"];
@@ -18,8 +18,10 @@ function createInterviewBubbles() {
 
         var interviewThumbnail = document.createElement('img');
         interviewThumbnail.classList.add("interview-thumbnail");
-        interviewThumbnail.src = images[i]
-        interviewThumbnail.alt = "?"
+        if(images[i] != "#"){
+            interviewThumbnail.src = images[i];
+        }
+        interviewThumbnail.alt = "";
 
         var interviewCard = document.createElement('div');
         interviewCard.classList.add("interview-card");
@@ -48,8 +50,7 @@ function moveInterviewRow(left) {
     currentInterviewBubble = closest;
 
     // move to one side or the other showing more items with considering screen size
-    var offset = (window.screen.width - 300) / interviewBubbleWidth; // offset 300 for margin and arrow buttons
-    offset = Math.floor(offset);
+    var offset = Math.floor((window.innerWidth - 300) / interviewBubbleWidth); // offset 300 for margin and arrow buttons
 
     if(left){
         currentInterviewBubble -= offset;
@@ -64,6 +65,11 @@ function moveInterviewRow(left) {
 
 function toggleNavDropdown() {
     document.getElementById("dropdown-container").classList.toggle("hidden");
+}
+
+function goToURL(url){
+    // window.location.href = url;
+    window.open(url, 'moreInfo');
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
