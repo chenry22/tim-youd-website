@@ -58,12 +58,12 @@ function loadInterviewBlocks(interviews){
             var fullInterviewButton = document.createElement('button');
             fullInterviewButton.classList.add('filled-button');
             fullInterviewButton.innerText = "Full Interview"
-            fullInterviewButton.onclick = "goToURL(" + interview[4] + ")";
+            fullInterviewButton.setAttribute('onclick', "goToURL('" + interview[4] + "')");
 
             var artistBioButton = document.createElement('button');
             artistBioButton.classList.add('stroke-button');
             artistBioButton.innerText = "Artist Bio"
-            artistBioButton.onclick = "goToURL(" + interview[5] + ")";
+            artistBioButton.setAttribute('onclick', "goToURL('" + interview[5] + "')");
 
             var buttonContainer = document.createElement('div');
             buttonContainer.classList.add('interview-button-container');

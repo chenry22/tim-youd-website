@@ -3,6 +3,7 @@
     --primary-color-hover: rgb(84, 84, 184);
     --secondary-color: white;
     --tertiary-color: lightblue;
+    --locked-color: lightgrey;
 
     --horizontal-margin: 8%;
 
@@ -43,6 +44,7 @@ button {
 .topnav {
     display: flex;
     align-content: stretch;
+    margin-bottom: -20px;
 }
 .topnav > a {
     color: var(--primary-color);
@@ -161,7 +163,7 @@ button {
     }
     .kwur-embed {
         width: 100%;
-        margin: 10px auto;
+        margin: 8px auto;
         height: 180px;
         border-radius: 10px;
     }
@@ -203,7 +205,7 @@ button {
     }
     .kwur-embed {
         width: 80%;
-        margin: 10px auto 40px;
+        margin: 20px auto 40px;
         height: 180px;
         border-radius: 10px;
     }
@@ -307,10 +309,12 @@ button {
     flex-direction: row;
     align-items: center;
     gap: 24px;
+
     width: 70%;
+    height: 200px;
 
     overflow-x: scroll;
-    overflow-y: visible;
+    overflow-y:hidden;
     scrollbar-width: none;
 }
 #interview-row::-webkit-scrollbar {
@@ -319,8 +323,12 @@ button {
 
 .interview-bubble {
     flex-shrink: 0;
-    width: 140px;
+    width: 136px;
+    height: 100%;
     font-size: 18px;
+
+    display: grid;
+    cursor: pointer;
 }
 .interview-bubble:hover .interview-thumbnail {
     box-shadow: 0px 0px 16px rgba(0, 0, 139, 0.1);
@@ -329,21 +337,39 @@ button {
     box-shadow: 0px 0px 16px rgba(0, 0, 139, 0.1);
 }
 .interview-thumbnail {
-    display: inline-block;
-    vertical-align: middle;
-    width: 140px;
-    height: 140px;
+    grid-column: 1;
+    grid-row: 1;
 
+    text-align: center;
+    width: 136px;
+    height: 136px;
+
+    color: var(--primary-color);
+    font-size: 70px;
     background-color: var(--tertiary-color);
     border: 2px solid var(--tertiary-color); 
     border-radius: 50%;
-    object-fit: cover;
     transition: box-shadow var(--button-fast-transition-time);
 }
+.interview-thumbnail::before {
+    position: relative;
+    top: 20%;
+}
+.interview-locked {
+    color: darkgrey;
+    background-color: var(--locked-color);
+    cursor: default;
+}
 .interview-card {
-    position: static;
-    padding: 6px 8px;
-    transform: translateY(-14px);
+    font-size: 17px;
+    text-align: center;
+    grid-column: 1;
+    grid-row: 1;
+
+    height: fit-content;
+    margin: auto 0 20px;
+    padding: 8px 6px;
+    z-index: 2;
 
     background-color: var(--secondary-color);
     border: 2px solid var(--primary-color);
@@ -353,8 +379,10 @@ button {
 
 #view-all-interviews-button {
     padding: 28px 54px;
-    margin-bottom: 20px;
+    margin: 10px 0 20px;
+
     font-size: 24px;
+    font-weight: 500;
 }
 
 @media only screen and (max-width: 800px){
