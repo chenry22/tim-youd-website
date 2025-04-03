@@ -74,7 +74,7 @@ function loadInterviewBlocks(interviews){
             // timer countdown
             var availableIn = document.createElement('h3');
             availableIn.classList.add('countdown-label');
-            availableIn.innerText = "Available in...";
+            availableIn.innerText = "Available in";
 
             var countdown = document.createElement('h1');
             getCountdown(countdown, dateInfo, null);

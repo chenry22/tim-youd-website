@@ -14,11 +14,12 @@
     /* BUTTONS */
     --button-font-size: 22px;
     --button-padding: 24px 34px;
-    --button-border-radius: 18px;
-    --button-fill-radius: 16px;
 
     --button-transition-time: 0.5s;
     --button-fast-transition-time: 0.2s;
+
+    /* MISC */
+    --kwur-embed-height: 200px;
 }
 
 html {
@@ -26,7 +27,7 @@ html {
     text-align: center;
 }
 body {
-    padding-bottom: 140px;
+    padding-bottom: 160px;
 }
 button {
     cursor: pointer;
@@ -40,43 +41,65 @@ button {
 
 
 
-/* NAVBAR */
-.topnav {
-    display: flex;
-    align-content: stretch;
-    margin-bottom: -20px;
-}
-.topnav > a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-size: var(--navbar-font-size);
-    display: block;
-    padding: var(--navbar-padding);
-}
-.topnav > a:hover {
-    color: var(--primary-color-hover);
-}
-.nav-dropdown {
-    float: left;
-    overflow: hidden;
-}
-.nav-dropdown > button {
-    height: 100%;
-    border: none;
-    outline: none;
-    color: var(--primary-color);
-    background-color: inherit;
+/* SMALLER SCREENS (mobile) */
+@media only screen and (min-device-width : 320px) and (max-device-width : 785px) { 
+    :root {
+        /* NAVBAR */
+        --navbar-padding: 0 0;
+        --navbar-font-size: 36px;
+    
+        /* INTERVIEWS */
+        --interview-bubble-size: 90px;
 
-    font-size: var(--navbar-font-size);;
-    padding: var(--navbar-padding);
-    margin: 0;
-}
+        /* BUTTONS */
+        --button-font-size: 20px;
+        --button-padding: 20px 20px;
+        --button-border-radius: 18px;
+        --button-fill-radius: 20px;
+    
+        /* MISC */
+        --kwur-embed-height: 400px;
+        --horizontal-margin: 5%;
+    }
 
-@media only screen and (max-width: 800px) {
+
+    /* NAVBAR */
+    .topnav {
+        display: flex;
+        align-content: start;
+        align-items: center;
+
+        margin: 14px var(--horizontal-margin) 0;
+        padding: 0;
+    }
+    .topnav > a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-size: var(--navbar-font-size);
+
+        display: block;
+        padding: var(--navbar-padding);
+    }
+    .topnav > a:hover {
+        color: var(--primary-color-hover);
+    }
+    .nav-dropdown > button {
+        border: none;
+        outline: none;
+        color: var(--primary-color);
+        background-color: inherit;
+
+        font-size: var(--navbar-font-size);
+        padding: var(--navbar-padding);
+    }
+    .nav-dropdown {
+        float: left;
+        overflow: hidden;
+    }
     #dropdown-container {
         display: block;
         position: absolute;
-        right: 40px;
+        right: 36px;
         width: 160px;
 
         background-color: #e9f0ff;
@@ -84,16 +107,251 @@ button {
         z-index: 1;
     }
     #dropdown-container a {
+        display: block;
         float: none;
         color: var(--primary-color);
-        padding: 18px 24px;
+        padding: 20px 30px;
+
         text-decoration: none;
-        display: block;
+        font-size: 16px;
         text-align: left;
+    }
+
+
+    /* Main Page */
+    .main-title {
+        font-size: 44px;
+        font-weight: bolder;
+        color: var(--primary-color);
+        margin: 0;
+    }
+    .sub-title {
+        font-size: 20px;
+        font-weight: lighter;
+        margin: 0 auto;
+    }
+    #book-cover {
+        display: block;
+        width: 50%;
+        margin: 10px auto;
+    }
+
+    #split-description, #lower-desc, #lower-kwur-embed {
+        display: none;
+    }
+    #lower-split-desc {
+        margin: 0 var(--horizontal-margin) 50px;
+    }
+    #cover-div {
+        margin-top: 20px;
+    }
+    .main-description {
+        margin: 18px 0;
+        text-align: start;
+        text-indent: 40px;
+        font-size: 18px;
+    }
+    .kwur-embed {
+        width: 100%;
+        margin: 16px auto;
+        border-radius: 10px;
+    }
+
+
+    /* Interview Row */
+    .interview-row-nav-button button {
+        display: none;
+    }
+
+    #interview-row {
+        flex-grow: 1;
+        flex-shrink: 0;
+    
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    
+        width: 80%;
+        height: 130px;
+        margin: 0 0 0;
+    
+        overflow-x: scroll;
+        overflow-y:hidden;
+        scrollbar-width: none;
+    }
+
+    .interview-bubble {
+        flex-shrink: 0;
+        width: var(--interview-bubble-size);
+        height: 100%;
+    
+        display: grid;
+        cursor: pointer;
+    }
+    .interview-bubble:hover .interview-thumbnail {
+        box-shadow: 0px 0px 20px rgba(0, 0, 139, 0.1);
+    }
+    .interview-bubble:hover .interview-card {
+        box-shadow: 0px 0px 20px rgba(0, 0, 139, 0.1);
+    }
+    .interview-thumbnail {
+        grid-column: 1;
+        grid-row: 1;
+    
+        text-align: center;
+        width: var(--interview-bubble-size);
+        height: var(--interview-bubble-size);
+    
+        color: var(--primary-color);
+        font-size: 50px;
+        background-color: var(--tertiary-color);
+        border: 2px solid var(--tertiary-color); 
+        border-radius: 50%;
+        transition: box-shadow var(--button-fast-transition-time);
+    }
+    .interview-card {
+        font-size: 16px;
+        text-align: center;
+        grid-column: 1;
+        grid-row: 1;
+    
+        height: fit-content;
+        margin: auto 0 8px;
+        padding: 4px 10px;
+        z-index: 2;
+    
+        background-color: var(--secondary-color);
+        border: 2px solid var(--primary-color);
+        border-radius: 10px;
+        transition: box-shadow var(--button-fast-transition-time);
+    }
+    
+    #view-all-interviews-button {
+        padding: 20px 30px;
+        margin: 0 0 20px;
+    
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    #more-info-div {
+        min-height: 140px;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+
+        margin: 0 var(--horizontal-margin);
+    }
+    #more-info-div button {
+        flex: 1 0;
+        margin: 0px 6px;
+    }
+
+
+    /* INTERVIEW PAGE */
+    .interview-block {
+        flex: 1 0 0;
+    }
+    #interviews-container {
+        margin: 20px var(--horizontal-margin);
+        gap: 30px;
+    }
+    .interview-block {
+        padding: 14px 18px;
+    }
+    .interview-name {
+        font-size: 24px;
+        font-weight: 700;
+    }
+    .interview-date {
+        font-size: 16px;
+    }
+    .interview-video-container {
+        margin: 20px 0;
+    }
+    .interview-description {
+        font-size: 16px;
+        padding: 0 0 4px;
+    }
+    .interview-button-container {
+        margin: 0 0 10px;
+        gap: 20px;
+    }
+    .countdown-container {
+        margin: 20px 0 30px;
+    }
+    .interview-button-container button {
+        font-size: 18px;
+        font-weight: 500;
+    }
+    
+    .countdown-label {
+        font-size: 22px;
+    }
+    .countdown-timer {
+        font-size: 40px;
     }
 }
 
-@media only screen and (min-width: 800px) {
+
+
+/* MEDIUM SCREENS */
+@media only screen and (min-device-width : 786px) and (max-device-width : 1024px) {
+    :root {
+        /* NAVBAR */
+        --navbar-padding: 0;
+        --navbar-font-size: 56px;
+    
+        /* INTERVIEWS */
+        --interview-bubble-size: 160px;
+
+        /* BUTTONS */
+        --button-font-size: 26px;
+        --button-padding: 30px 36px;
+        --button-border-radius: 26px;
+        --button-fill-radius: 26px;
+    
+        /* MISC */
+        --horizontal-margin: 6%;
+    }
+
+
+    /* NAVBAR */
+    .topnav {
+        display: flex;
+        align-content: start;
+        align-items: center;
+
+        margin: 20px 30px 0;
+        padding: 0;
+    }
+    .topnav > a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-size: var(--navbar-font-size);
+        display: block;
+        padding: var(--navbar-padding);
+        margin: 0;
+    }
+    .topnav > a:hover {
+        color: var(--primary-color-hover);
+    }
+    .nav-dropdown {
+        float: left;
+        overflow: hidden;
+    }
+    .nav-dropdown > button {
+        height: 100%;
+        border: none;
+        outline: none;
+        color: var(--primary-color);
+        background-color: inherit;
+
+        font-size: var(--navbar-font-size);
+        padding: var(--navbar-padding);
+        margin: 0;
+    }
     #dropdown-container {
         display: block;
         position: absolute;
@@ -105,86 +363,32 @@ button {
         z-index: 1;
     }
     #dropdown-container a {
+        display: block;
         float: none;
         color: var(--primary-color);
-        font-size: 18px;
-        font-weight: 400;
+        padding: 20px 30px;
 
-        padding: 24px 30px;
         text-decoration: none;
-        display: block;
+        font-size: 20px;
         text-align: left;
     }
-}
-.topnav a:hover, .nav-dropdown button:hover {
-    color: var(--primary-color-hover);
-    cursor: pointer;
-}
-#dropdown-container a:hover {
-    background-color: #ecf6ff;
-    color: var(--primary-color-hover);
-}
 
-
-
-/* MAIN PAGE */
-@media only screen and (max-width: 800px){
+    /* Main Page */
     .main-title {
-        font-size: 60px;
+        font-size: 66px;
         font-weight: bolder;
         color: var(--primary-color);
         margin: 0;
     }
     .sub-title {
-        font-size: 26px;
+        font-size: 30px;
         font-weight: lighter;
         margin: 0 auto;
     }
     #book-cover {
         display: block;
-        width: 45%;
-        margin: 0 auto;
-    }
-
-    #split-description, #lower-desc, #lower-kwur-embed {
-        display: none;
-    }
-    #lower-split-desc {
-        margin: 0 var(--horizontal-margin) 34px;
-    }
-    #cover-div {
-        margin-top: 30px;
-    }
-    .main-description {
-        margin: 20px 0;
-        text-align: start;
-        text-indent: 50px;
-        font-size: 16px;
-    }
-    .kwur-embed {
-        width: 100%;
-        margin: 8px auto;
-        height: 180px;
-        border-radius: 10px;
-    }
-}
-
-@media only screen and (min-width: 800px) and (max-width: 1200px) {
-    .main-title {
-        font-size: 68px;
-        font-weight: bolder;
-        color: var(--primary-color);
-        margin: 0;
-    }
-    .sub-title {
-        font-size: 28px;
-        font-weight: lighter;
-        margin: 0 auto;
-    }
-    #book-cover {
-        display: block;
-        width: 35%;
-        margin: 0 auto;
+        width: 40%;
+        margin: 10px auto;
     }
 
     #split-description, #lower-split-desc, #lower-split-kwur-embed {
@@ -201,58 +405,483 @@ button {
         margin: 20px 0;
         text-align: start;
         text-indent: 50px;
-        font-size: 16px;
+        font-size: 20px;
     }
     .kwur-embed {
         width: 80%;
         margin: 20px auto 40px;
-        height: 180px;
         border-radius: 10px;
     }
+
+
+    /* Interview Row */
+    .interview-row-nav-button button {
+        display: none;
+    }
+
+    #interview-row {
+        flex-grow: 1;
+        flex-shrink: 0;
+    
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+    
+        width: 100%;
+        height: 220px;
+        margin: 0 0 10px;
+    
+        overflow-x: scroll;
+        overflow-y:hidden;
+        scrollbar-width: none;
+    }
+
+    .interview-bubble {
+        flex-shrink: 0;
+        width: var(--interview-bubble-size);
+        height: 100%;
+    
+        display: grid;
+        cursor: pointer;
+    }
+    .interview-bubble:hover .interview-thumbnail {
+        box-shadow: 0px 0px 20px rgba(0, 0, 139, 0.1);
+    }
+    .interview-bubble:hover .interview-card {
+        box-shadow: 0px 0px 20px rgba(0, 0, 139, 0.1);
+    }
+    .interview-thumbnail {
+        grid-column: 1;
+        grid-row: 1;
+    
+        text-align: center;
+        width: var(--interview-bubble-size);
+        height: var(--interview-bubble-size);
+    
+        color: var(--primary-color);
+        font-size: 86px;
+        background-color: var(--tertiary-color);
+        border: 2px solid var(--tertiary-color); 
+        border-radius: 50%;
+        transition: box-shadow var(--button-fast-transition-time);
+    }
+    .interview-card {
+        font-size: 22px;
+        text-align: center;
+        grid-column: 1;
+        grid-row: 1;
+    
+        height: fit-content;
+        margin: auto 0 8px;
+        padding: 10px 6px;
+        z-index: 2;
+    
+        background-color: var(--secondary-color);
+        border: 2px solid var(--primary-color);
+        border-radius: 10px;
+        transition: box-shadow var(--button-fast-transition-time);
+    }
+    
+    #view-all-interviews-button {
+        padding: 30px 40px;
+        margin: 0 0 20px;
+    
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    #more-info-div {
+        min-height: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+
+        margin: 0 10%;
+    }
+    #more-info-div button {
+        flex: 1 0;
+        margin: 10px 20px;
+    }
+
+
+    /* INTERVIEW PAGE */
+    .interview-block {
+        flex: 1 0 400px;
+    }
+    #interviews-container {
+        margin: 40px var(--horizontal-margin);
+        gap: 40px;
+    }
+    .interview-block {
+        padding: 20px 30px;
+    }
+    .interview-name {
+        font-size: 40px;
+        font-weight: 700;
+    }
+    .interview-date {
+        font-size: 22px;
+    }
+    .interview-video-container {
+        margin: 20px 0;
+    }
+    .interview-description {
+        font-size: 22px;
+        padding: 4px 0 10px;
+    }
+    .interview-button-container {
+        margin: 10px 0 18px;
+        gap: 40px;
+    }
+    .countdown-container {
+        margin: 20px 0 50px;
+    }
+    .interview-button-container button {
+        font-size: 28px;
+        font-weight: 500;
+    }
+    
+    .countdown-label {
+        font-size: 28px;
+    }
+    .countdown-timer {
+        font-size: 60px;
+    }
 }
-@media only screen and (min-width: 1200px) {
+
+
+
+/* LARGE SCREENS (desktop) */
+@media only screen and (min-device-width : 1025px) {
+    :root {
+        /* NAVBAR */
+        --navbar-padding: 4px;
+        --navbar-font-size: 40px;
+    
+        /* INTERVIEWS */
+        --interview-bubble-size: 130px;
+
+        /* BUTTONS */
+        --button-font-size: 22px;
+        --button-padding: 10px 20px;
+        --button-border-radius: 16px;
+        --button-fill-radius: 16px;
+    
+        /* MISC */
+        --horizontal-margin: 8%;
+    }
+
+
+    /* NAVBAR */
+    .topnav {
+        display: flex;
+        align-content: start;
+        align-items: center;
+
+        margin: 14px 20px 0;
+        padding: 0;
+    }
+    .topnav > a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-size: var(--navbar-font-size);
+        display: block;
+        padding: var(--navbar-padding);
+        margin: 0;
+    }
+    .topnav > a:hover {
+        color: var(--primary-color-hover);
+    }
+    .nav-dropdown {
+        float: left;
+        overflow: hidden;
+    }
+    .nav-dropdown > button {
+        height: 100%;
+        border: none;
+        outline: none;
+        color: var(--primary-color);
+        background-color: inherit;
+
+        font-size: var(--navbar-font-size);
+        padding: var(--navbar-padding);
+        margin: 0;
+    }
+    #dropdown-container {
+        display: block;
+        position: absolute;
+        right: 30px;
+        width: 200px;
+
+        background-color: #e9f0ff;
+        box-shadow: 0x 8px 18px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    #dropdown-container a {
+        float: none;
+        color: var(--primary-color);
+        padding: 20px 24px;
+
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        text-align: left;
+    }
+
+    /* Main Page */
     .main-title {
-        font-size: 80px;
+        font-size: 64px;
         font-weight: bolder;
         color: var(--primary-color);
         margin: 0;
     }
     .sub-title {
-        font-size: 30px;
+        font-size: 28px;
         font-weight: lighter;
-        margin: 10px auto 0;
+        margin: 0 auto;
     }
     #book-cover {
         display: block;
         width: 40%;
-        margin: 0 auto;
+        margin: 0px auto;
     }
 
+    #cover-div {
+        margin-top: 20px;
+    }
+    .main-description {
+        margin: 12px 0;
+        text-align: start;
+        text-indent: 30px;
+        font-size: 16px;
+    }
+    .kwur-embed {
+        width: 80%;
+        margin: 10px auto 20px;
+        border-radius: 10px;
+    }
+
+
+    /* Interview Row */
+    #interview-row {
+        flex-grow: 1;
+        flex-shrink: 0;
+    
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 28px;
+    
+        width: 80%;
+        height: 180px;
+        margin: 0;
+    
+        overflow-x: scroll;
+        overflow-y:hidden;
+        scrollbar-width: none;
+    }
+
+    .interview-bubble {
+        flex-shrink: 0;
+        width: var(--interview-bubble-size);
+        height: 100%;
+    
+        display: grid;
+        cursor: pointer;
+    }
+    .interview-bubble:hover .interview-thumbnail {
+        box-shadow: 0px 0px 20px rgba(0, 0, 139, 0.1);
+    }
+    .interview-bubble:hover .interview-card {
+        box-shadow: 0px 0px 20px rgba(0, 0, 139, 0.1);
+    }
+    .interview-thumbnail {
+        grid-column: 1;
+        grid-row: 1;
+    
+        text-align: center;
+        width: var(--interview-bubble-size);
+        height: var(--interview-bubble-size);
+    
+        color: var(--primary-color);
+        font-size: 64px;
+        background-color: var(--tertiary-color);
+        border: 2px solid var(--tertiary-color); 
+        border-radius: 50%;
+        transition: box-shadow var(--button-fast-transition-time);
+    }
+    .interview-card {
+        font-size: 18px;
+        text-align: center;
+        grid-column: 1;
+        grid-row: 1;
+    
+        height: fit-content;
+        margin: auto 0 8px;
+        padding: 10px 6px;
+        z-index: 2;
+    
+        background-color: var(--secondary-color);
+        border: 2px solid var(--primary-color);
+        border-radius: 10px;
+        transition: box-shadow var(--button-fast-transition-time);
+    }
+    
+    #view-all-interviews-button {
+        padding: 30px 50px;
+        margin: 10px 0 20px;
+    
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    #more-info-div {
+        min-height: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+
+        margin: 0 20%;
+    }
+    #more-info-div button {
+        flex: 1 0;
+        margin: 10px 10px;
+    }
+
+
+
+    /* INTERVIEW PAGE */
+    .interview-block {
+        flex: 1 0 400px;
+    }
+    #interviews-container {
+        margin: 40px var(--horizontal-margin);
+        gap: 30px;
+    }
+    .interview-block {
+        padding: 20px 28px;
+    }
+    .interview-name {
+        font-size: 26px;
+        font-weight: 700;
+    }
+    .interview-date {
+        font-size: 18px;
+    }
+    .interview-video-container {
+        margin: 20px 0;
+    }
+    .interview-description {
+        font-size: 16px;
+        padding: 0 0 4px;
+    }
+    .interview-button-container {
+        margin: 20px 4%;
+        gap: 20px;
+    }
+    .countdown-container {
+        margin: 20px 0 40px;
+    }
+    .interview-button-container button {
+        font-size: 20px;
+        font-weight: 500;
+        padding: 16px 10px;
+    }
+    
+    .countdown-label {
+        font-size: 24px;
+    }
+    .countdown-timer {
+        font-size: 40px;
+    }
+}
+
+/* Responsive formatting for desktop screen changes */
+@media only screen and (min-device-width : 1024px) and (max-width: 700px){
+    .interview-row-nav-button {
+        display: none;
+    }
+    #split-description, #lower-desc, #lower-kwur-embed {
+        display: none;
+    }
+    #lower-split-desc {
+        margin: 0 var(--horizontal-margin);
+    }
+    #more-info-div {
+        margin: 20px 14%;
+    }
+}
+@media only screen and (min-device-width : 1024px) and (min-width: 701px) and (max-width: 950px) {
+    #book-cover {
+        display: block;
+        width: 35% !important;
+        margin: 14px auto 12px;
+    }
+    .interview-row-nav-button {
+        display: none;
+    }
+    #split-description, #lower-split-desc {
+        display: none;
+    }
+    #lower-desc {
+        margin: 0 var(--horizontal-margin);
+    }
+    .kwur-embed {
+        margin: 10px 0 20px;
+    }
+    #more-info-div {
+        margin: 20px 14%;
+    }
+}
+/* Make book cover a little bigger when screen is less wide */
+@media only screen and (min-device-width : 1024px) and (min-width: 951px) and (max-width: 1200px) {
+    #book-cover {
+        display: block;
+        width: 45% !important;
+        margin: 10px auto;
+    }
+}
+@media only screen and (min-device-width : 1024px) and (min-width: 951px) {
     #lower-desc, #lower-kwur-embed, #lower-split-desc, #lower-split-kwur-embed {
         display: none;
     }
-    
+    #book-cover {
+        display: block;
+        width: 35%;
+        margin: 10px auto;
+    }
     #cover-div {
         display: flex;
-        margin: 40px var(--horizontal-margin);
+        margin: 40px var(--horizontal-margin) 10px;
         align-items: center;
-        gap: 50px;
+        gap: 40px;
     }
     #split-description {
         margin: 0;
     }
-    .main-description {
-        margin: 0 0 20px;
-        text-align: start;
-        text-indent: 50px;
-        font-size: 17px;
-    }
     .kwur-embed {
-        margin-top: 20px;
         width: 100%;
-        height: 180px;
+        margin: 20px auto 0;
         border-radius: 10px;
     }
+
+    #more-info-div {
+        margin-top: 10px;
+    }
+}   
+
+
+
+
+/* Universal styling (all screens) */
+.topnav a:hover, .nav-dropdown button:hover {
+    color: var(--primary-color-hover);
+    cursor: pointer;
+}
+#dropdown-container a:hover {
+    background-color: #ecf6ff;
+    color: var(--primary-color-hover);
 }
 
 #interview-div {
@@ -264,92 +893,8 @@ button {
     padding: 30px 0 20px;
     margin: 0 var(--horizontal-margin);
 }
-@media only screen and (max-width: 850px){
-    .interview-row-nav-button button {
-        display: none;
-    }
-}
-@media only screen and (min-width: 850px){
-    .interview-row-nav-button button {
-        flex-shrink: 1;
-        width: 50px;
-        height: 50px;
-    
-        font-size: large;
-        font-weight: bolder;
-    
-        color: var(--primary-color);
-        background-color: white;
-        border: 2px solid var(--primary-color);
-        border-radius: 50%;
-    
-        transition: color var(--button-fast-transition-time), 
-            border-color var(--button-fast-transition-time);
-    }
-    .left {
-        margin-right: 20px;
-    }
-    .right {
-        margin-left: 20px;
-    }
-    .interview-row-nav-button button:hover {
-        color: var(--primary-color-hover);
-        border-color: var(--primary-color-hover);
-    }
-    .interview-row-nav-button button:active {
-        transform: translateY(2px);
-    }
-}
-
-#interview-row {
-    flex-grow: 1;
-    flex-shrink: 0;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 24px;
-
-    width: 70%;
-    height: 200px;
-
-    overflow-x: scroll;
-    overflow-y:hidden;
-    scrollbar-width: none;
-}
 #interview-row::-webkit-scrollbar {
     display: none;  /* Hide the scrollbar on webkit browsers */
-}
-
-.interview-bubble {
-    flex-shrink: 0;
-    width: 136px;
-    height: 100%;
-    font-size: 18px;
-
-    display: grid;
-    cursor: pointer;
-}
-.interview-bubble:hover .interview-thumbnail {
-    box-shadow: 0px 0px 16px rgba(0, 0, 139, 0.1);
-}
-.interview-bubble:hover .interview-card {
-    box-shadow: 0px 0px 16px rgba(0, 0, 139, 0.1);
-}
-.interview-thumbnail {
-    grid-column: 1;
-    grid-row: 1;
-
-    text-align: center;
-    width: 136px;
-    height: 136px;
-
-    color: var(--primary-color);
-    font-size: 70px;
-    background-color: var(--tertiary-color);
-    border: 2px solid var(--tertiary-color); 
-    border-radius: 50%;
-    transition: box-shadow var(--button-fast-transition-time);
 }
 .interview-thumbnail::before {
     position: relative;
@@ -360,54 +905,35 @@ button {
     background-color: var(--locked-color);
     cursor: default;
 }
-.interview-card {
-    font-size: 17px;
-    text-align: center;
-    grid-column: 1;
-    grid-row: 1;
 
-    height: fit-content;
-    margin: auto 0 20px;
-    padding: 8px 6px;
-    z-index: 2;
+.interview-row-nav-button button {
+    flex-shrink: 1;
+    width: 50px;
+    height: 50px;
 
-    background-color: var(--secondary-color);
+    font-size: large;
+    font-weight: bolder;
+
+    color: var(--primary-color);
+    background-color: white;
     border: 2px solid var(--primary-color);
-    border-radius: 10px;
-    transition: box-shadow var(--button-fast-transition-time);
+    border-radius: 50%;
+
+    transition: color var(--button-fast-transition-time), 
+        border-color var(--button-fast-transition-time);
 }
-
-#view-all-interviews-button {
-    padding: 28px 54px;
-    margin: 10px 0 20px;
-
-    font-size: 24px;
-    font-weight: 500;
+.left {
+    margin-right: 20px;
 }
-
-@media only screen and (max-width: 800px){
-    #more-info-div {
-        min-height: 180px;
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
-
-        margin: 0 10%;
-    }
+.right {
+    margin-left: 20px;
 }
-@media only screen and (min-width: 800px){
-    #more-info-div {
-        min-height: 180px;
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
-
-        margin: 20px 20%;
-    }
+.interview-row-nav-button button:hover {
+    color: var(--primary-color-hover);
+    border-color: var(--primary-color-hover);
 }
-#more-info-div button {
-    flex: 1 0;
-    margin: 10px 15px;
+.interview-row-nav-button button:active {
+    transform: translateY(2px);
 }
 
 
@@ -418,19 +944,12 @@ button {
 }
 
 #interviews-container {
-    margin: 40px var(--horizontal-margin);
-    
     display: flex;
     flex-wrap: wrap;
-
     justify-content: center;
     align-items: center;
-    gap: 40px;
 }
 .interview-block {
-    flex: 1 0 350px;
-    padding: 30px;
-
     border: 2px solid var(--primary-color);
     border-radius: 20px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
@@ -446,6 +965,7 @@ button {
     display: flex;
     justify-content: stretch;
     align-items: center;
+    gap: 20px;
 }
 .interview-name {
     text-align: left;
@@ -464,7 +984,6 @@ button {
     width: 100%;
     height: 0;
     padding-bottom: 58%;
-    margin: 20px 0;
 }
 .interview-video-container iframe {
     position: absolute;
@@ -476,34 +995,23 @@ button {
 
     border-radius: 10px;
 }
-.interview-description {
-    padding: 10px 0;
-}
 .interview-button-container {
-    margin: 20px 0 0;
     display: flex;
     justify-content: stretch;
     align-items: stretch;
-    gap: 30px;
 }
 .interview-button-container button {
     flex: 1 1 0;
-    font-size: 18px;
 }
 
-.countdown-container {
-    margin: 50px 0;
-}
 .countdown-label {
     font-weight: lighter;
-    font-size: 20px;
     font-style: italic;
     margin: 0;
     padding-bottom: 12px;
 }
 .countdown-timer {
     font-weight: bolder;
-    font-size: 48px;
     margin: 0;
 }
 
@@ -527,23 +1035,6 @@ button {
         transform var(--button-fast-transition-time),
         box-shadow var(--button-fast-transition-time);
 }
-/* .filled-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 110%;
-    height: 100%;
-    border-radius: var(--button-fill-radius);
-
-    background-color: var(--secondary-color);
-    transition: all var(--button-transition-time);
-    z-index: -1;
-    transform: translateX(-100%);
-}
-.filled-button:hover::before {
-    transform: translateX(0%);
-} */
 .filled-button:hover {
     /* color: var(--primary-color); */
     transform: translate(-2px, -2px);
@@ -630,4 +1121,3 @@ button {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
