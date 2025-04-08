@@ -67,7 +67,7 @@ button {
     :root {
         /* NAVBAR */
         --navbar-padding: 0 0;
-        --navbar-font-size: 36px;
+        --navbar-font-size: 34px;
     
         /* INTERVIEWS */
         --interview-bubble-size: 90px;
@@ -141,30 +141,22 @@ button {
 
     /* Main Page */
     .main-title {
-        font-size: 44px;
+        font-size: 40px;
         font-weight: bolder;
         color: var(--primary-color);
-        margin: 0;
+        margin: 18px 0 4px;
     }
     .sub-title {
-        font-size: 20px;
+        font-size: 24px;
         font-weight: lighter;
         margin: 0 auto;
     }
-    #book-cover {
-        display: block;
-        width: 50%;
-        margin: 10px auto;
-    }
-
-    #split-description, #lower-desc, #lower-kwur-embed {
-        display: none;
-    }
-    #lower-split-desc {
-        margin: 0 var(--horizontal-margin) 50px;
-    }
-    #cover-div {
-        margin-top: 20px;
+    #main-div {
+        display: flex;
+        justify-content: stretch;
+        align-items: stretch;
+        margin: 14px 6% 20px;
+        gap: 4%;
     }
     .main-description {
         margin: 18px 0;
@@ -173,9 +165,7 @@ button {
         font-size: 18px;
     }
     .kwur-embed {
-        width: 100%;
-        margin: 16px auto;
-        border-radius: 10px;
+        width: 90%;
     }
 
 
@@ -183,7 +173,6 @@ button {
     .interview-row-nav-button button {
         display: none;
     }
-
     #interview-row {
         flex-grow: 1;
         flex-shrink: 0;
@@ -232,13 +221,13 @@ button {
         transition: box-shadow var(--button-fast-transition-time);
     }
     .interview-card {
-        font-size: 16px;
+        font-size: 13px;
         text-align: center;
         grid-column: 1;
         grid-row: 1;
     
         height: fit-content;
-        margin: auto 0 8px;
+        margin: auto 0 0;
         padding: 4px 10px;
         z-index: 2;
     
@@ -399,22 +388,21 @@ button {
         font-size: 66px;
         font-weight: bolder;
         color: var(--primary-color);
-        margin: 0;
+        margin: 0 0 8px;
     }
     .sub-title {
-        font-size: 30px;
+        font-size: 42px;
         font-weight: lighter;
         margin: 0 auto;
     }
-    #book-cover {
-        display: block;
-        width: 40%;
-        margin: 10px auto;
+    #main-div {
+        display: flex;
+        justify-content: stretch;
+        align-items: stretch;
+        margin: 20px 10% 20px;
+        gap: 2%;
     }
 
-    #split-description, #lower-split-desc, #lower-split-kwur-embed {
-        display: none;
-    }
     #lower-desc {
         margin: 0 var(--horizontal-margin);
     }
@@ -430,7 +418,7 @@ button {
     }
     .kwur-embed {
         width: 80%;
-        margin: 20px auto 40px;
+        margin: 8px auto 10px;
         border-radius: 10px;
     }
 
@@ -663,9 +651,12 @@ button {
         margin: 4px auto 0;
         color: black;
     }
-
-    .left-column button {
-        margin: 0 12%;
+    #main-div {
+        display: flex;
+        justify-content: stretch;
+        align-items: stretch;
+        margin: 20px 16% 10px;
+        gap: 2%;
     }
     #cover-div {
         margin-top: 20px;
@@ -817,49 +808,6 @@ button {
     }
 }
 
-/* Responsive formatting for desktop screen changes */
-@media only screen and (min-device-width : 1025px) and (max-width: 700px){
-    #lower-split-desc {
-        margin: 0 var(--horizontal-margin);
-    }
-    #more-info-div {
-        margin: 20px 14%;
-    }
-}
-@media only screen and (min-device-width : 1025px) and (min-width: 701px) and (max-width: 950px) {
-    .interview-row-nav-button {
-        display: none;
-    }
-    #split-description, #lower-split-desc {
-        display: none;
-    }
-    #lower-desc {
-        margin: 0 var(--horizontal-margin);
-    }
-    #more-info-div {
-        margin: 20px 14%;
-    }
-}
-@media only screen and (min-device-width : 1025px) and (min-width: 951px) {
-    .left-column button {
-        margin-bottom: 16px;
-    }
-    #cover-div {
-        display: flex;
-        margin: 40px var(--horizontal-margin) 10px;
-        align-items: center;
-        gap: 40px;
-    }
-    #split-description {
-        margin: 0;
-    }
-
-    #more-info-div {
-        margin-top: 10px;
-    }
-}   
-
-
 
 
 /* Universal styling (all screens) */
@@ -876,16 +824,10 @@ button {
     color: var(--primary-color-hover);
 }
 
-#main-div {
-    display: flex;
-    justify-content: stretch;
-    align-items: stretch;
-    margin: 20px 16% 20px;
-    gap: 2%;
-}
 #main-div div {
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 .left-column {
     flex: 1;
@@ -895,12 +837,12 @@ button {
     flex-grow: 1;
     width: 120%;
     object-fit: scale-down;
+    border-radius: 20px;
+
+    transition: transform var(--button-transition-time);
 }
-.left-column button {
-    padding: 40px 30px;
-    font-size: 28px;
-    font-weight: 600;
-    font-variant: small-caps;
+.left-column img:hover {
+    transform: rotate(-5deg);
 }
 .right-column {
     flex: 1;
@@ -911,6 +853,12 @@ button {
     margin: 0 auto;
     height: auto;
     display: block;
+    border-radius: 20px;
+
+    transition: transform var(--button-transition-time);
+}
+#book-cover:hover {
+    transform: rotate(3deg);
 }
 
 #interview-div {
@@ -919,7 +867,7 @@ button {
     justify-content: center;
     align-items: center;
 
-    padding: 30px 0 20px;
+    padding: 40px 0 20px;
     margin: 0 var(--horizontal-margin);
 }
 #interview-row::-webkit-scrollbar {
@@ -989,7 +937,7 @@ button {
     width: fit-content;
     height: fit-content;
     max-height: 98%;
-    max-width: 90%;
+    max-width: 94%;
 
     background-color: white;
     border-radius: 20px;
@@ -999,11 +947,6 @@ button {
     max-width: 90%;
     max-height: 90%;
     margin: 0 auto;
-
-    transition: transform var(--button-transition-time);
-}
-.popup-img:hover {
-    transform: translate(-2px, -2px);
 }
 .popup-buttons {
     margin: 10px 0 20px;
@@ -1044,6 +987,7 @@ button {
     border: 2px solid var(--primary-color);
     border-radius: 20px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: white;
 
     transition: box-shadow var(--button-transition-time),
         transform var(--button-transition-time);
@@ -1065,8 +1009,11 @@ button {
     width: fit-content;
     transition: transform var(--button-fast-transition-time);
 }
-.pfp-div:hover {
-    transform: translate(-1px, -1px);
+.pfp-div:hover .interview-block-thumbnail {
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+}
+.pfp-div:hover i {
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
 }
 .interview-block-thumbnail {
     position: relative;
@@ -1075,9 +1022,6 @@ button {
     aspect-ratio: 1;
     object-fit: cover;
     transition: box-shadow var(--button-fast-transition-time);
-}
-.interview-block-thumbnail:hover {
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 .pfp-div i {
     position: absolute;
@@ -1088,10 +1032,7 @@ button {
     z-index: 2;
  
     background-color: var(--tertiary-color);
-    transition: background-color var(--button-fast-transition-time);
-}
-.pfp-div i:hover {
-    background-color: var(--primary-color-hover);
+    transition: box-shadow var(--button-fast-transition-time);
 }
 
 .interview-header {
