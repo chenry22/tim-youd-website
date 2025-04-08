@@ -13,6 +13,7 @@
         <!-- font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
         <!-- project-specific styling/functionality -->
@@ -34,7 +35,7 @@
                 <div id="dropdown-container" class="hidden">
                     <a href="/index.html">Main</a>
                     <a href="#">Interviews</a>
-                    <!-- <a href="/about.html">About</a> -->
+                    <a href="/about.html">About</a>
                 </div>
             </div>
         </div>
@@ -69,6 +70,17 @@
                     <button class="stroke-button">Artist Bio</button>
                 </div>
             </div> -->
+        </div>
+
+        <div class="overlay hidden" id="popup">
+            <div class="overlay-container" onclick="event.stopPropagation()">
+                <span class="close-btn" onclick="closeFullImage()">&times;</span>
+                <img id="popup-img" class="popup-img" src="" alt="Full Image">
+                <div class="popup-buttons">
+                    <button id="full-interview-button" class="filled-button">Full Interview</button>
+                    <button id="more-info-button" class="stroke-button">Learn More</button>
+                </div>
+            </div>
         </div>
     </body>
 </html>

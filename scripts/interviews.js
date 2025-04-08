@@ -10,24 +10,46 @@ function loadInterviewBlocks(interviews){
     var loader = document.getElementById("interviews-loader");
     var interviewContainer = document.getElementById("interviews-container");
 
-    interviews.forEach(interview => {
+    interviews.forEach(interview => { // date, name, vid, audio, personal link
         var title = document.createElement('div');
         title.classList.add('interview-title-div');
 
-        var name = document.createElement('h1');
+        var name = document.createElement('h2');
         name.classList.add('interview-name');
-        name.innerText = interview[1];
 
         var date = document.createElement('h4');
         date.classList.add('interview-date');
         var dateInfo = new Date(interview[0]);
         date.innerText = monthNames[dateInfo.getMonth()] + " " + dateInfo.getDate() + ", " + dateInfo.getFullYear();
 
+        if(dateInfo <= Date.now()) {
+            var pfpDiv = document.createElement('div');
+            pfpDiv.classList.add('pfp-div');
+            pfpDiv.setAttribute('onclick', "showFullImage('" + interview[1] + "', '" + interview[3] + "', '" + interview[4] + "')");
+
+            var pfp = document.createElement('img');
+            pfp.src = "images/thumbnails/" + interview[1].toLowerCase().replace(/\s/g, '-') + ".png";
+            pfp.alt = interview[1];
+            pfp.classList.add("interview-block-thumbnail");
+            var toggleFull = document.createElement('i');
+            toggleFull.classList.add("fa-solid", "fa-up-right-and-down-left-from-center");
+            pfpDiv.appendChild(pfp);
+            pfpDiv.appendChild(toggleFull);
+
+            name.innerText = interview[1];
+            title.appendChild(pfpDiv);
+        } else {
+            name.innerText = "[ Locked ]";
+        }
+
         // create basic block
         var interviewBlock = document.createElement('div');
         interviewBlock.classList.add('interview-block');
-        title.appendChild(name);
-        title.appendChild(date);
+        var textBlock = document.createElement('div');
+        textBlock.classList.add("interview-header");
+        textBlock.appendChild(name);
+        textBlock.appendChild(date);
+        title.appendChild(textBlock);
         interviewBlock.appendChild(title);
         interviewContainer.appendChild(interviewBlock);
 
@@ -38,7 +60,7 @@ function loadInterviewBlocks(interviews){
             vid.width = 560;
             vid.height = 315;
             vid.title = interview[1];
-            vid.src = interview[3];
+            vid.src = interview[2];
             vid.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
             vid.referrerPolicy = "strict-origin-when-cross-origin";
             vid.allowFullscreen = true;
@@ -48,22 +70,16 @@ function loadInterviewBlocks(interviews){
             videoContainer.appendChild(vid);
             interviewBlock.appendChild(videoContainer);
 
-            // add custom description
-            var desc = document.createElement('p');
-            desc.classList.add('interview-description');
-            desc.innerText = interview[2];
-            interviewBlock.appendChild(desc);
-
             // add buttons with links
             var fullInterviewButton = document.createElement('button');
             fullInterviewButton.classList.add('filled-button');
             fullInterviewButton.innerText = "Full Interview"
-            fullInterviewButton.setAttribute('onclick', "goToURL('" + interview[4] + "')");
+            fullInterviewButton.setAttribute('onclick', "goToURL('" + interview[3] + "')");
 
             var artistBioButton = document.createElement('button');
             artistBioButton.classList.add('stroke-button');
-            artistBioButton.innerText = "Artist Bio"
-            artistBioButton.setAttribute('onclick', "goToURL('" + interview[5] + "')");
+            artistBioButton.innerText = "Learn More"
+            artistBioButton.setAttribute('onclick', "goToURL('" + interview[4] + "')");
 
             var buttonContainer = document.createElement('div');
             buttonContainer.classList.add('interview-button-container');
@@ -92,6 +108,20 @@ function loadInterviewBlocks(interviews){
     });
     loader.classList.toggle("hidden");
     interviewContainer.classList.toggle("hidden");
+}
+
+function showFullImage(name, audioLink, extraLink) {
+    // set buttons to appropriate onclick
+    document.getElementById('full-interview-button').setAttribute('onclick', "goToURL('" + audioLink + "')");
+    document.getElementById('more-info-button').setAttribute('onclick', "goToURL('" + extraLink + "')");
+
+    // toggle image overlay (toggle hidden attribute)
+    document.getElementById('popup-img').setAttribute('src', "images/tiles/" + name.toLowerCase().replace(/\s/g, '-') + ".png");
+    document.getElementById('popup-img').setAttribute('alt', name);
+    document.getElementById('popup').classList.toggle('hidden');
+}
+function closeFullImage() {
+    document.getElementById('popup').classList.toggle('hidden');
 }
 
 // given countdown html var, update with current
@@ -145,4 +175,10 @@ async function fetchInterviewData() {
 
 document.addEventListener("DOMContentLoaded", (event) => {
     fetchInterviewData();
+
+    document.getElementById('popup').addEventListener('click', function (e) {
+        if (!document.getElementById('popup').classList.contains('hidden') && e.target === this) {
+            closeFullImage();
+        }
+    });
 });

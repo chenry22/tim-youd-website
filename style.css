@@ -26,8 +26,29 @@ html {
     font-family: "Open Sans", sans-serif;
     text-align: center;
 }
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/bg-texture.jpeg'); /* <-- your image path */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3; /* Adjust opacity here */
+    z-index: -1; /* Push behind page content */
+  }
+h1 {
+    font-family: "Special Elite", system-ui;
+    font-style: normal;
+}
+h3 {
+    font-family: "Special Elite", system-ui;
+    font-style: normal;
+}
 body {
-    padding-bottom: 160px;
+    padding-bottom: 60px;
 }
 button {
     cursor: pointer;
@@ -557,10 +578,10 @@ button {
     :root {
         /* NAVBAR */
         --navbar-padding: 4px;
-        --navbar-font-size: 40px;
+        --navbar-font-size: 50px;
     
         /* INTERVIEWS */
-        --interview-bubble-size: 130px;
+        --interview-bubble-size: 140px;
 
         /* BUTTONS */
         --button-font-size: 22px;
@@ -569,7 +590,7 @@ button {
         --button-fill-radius: 16px;
     
         /* MISC */
-        --horizontal-margin: 8%;
+        --horizontal-margin: 7%;
     }
 
 
@@ -579,7 +600,7 @@ button {
         align-content: start;
         align-items: center;
 
-        margin: 14px 20px 0;
+        margin: 2% 3% 0px;
         padding: 0;
     }
     .topnav > a {
@@ -612,7 +633,7 @@ button {
         display: block;
         position: absolute;
         right: 30px;
-        width: 200px;
+        width: 220px;
 
         background-color: #e9f0ff;
         box-shadow: 0x 8px 18px 0px rgba(0,0,0,0.2);
@@ -621,7 +642,7 @@ button {
     #dropdown-container a {
         float: none;
         color: var(--primary-color);
-        padding: 20px 24px;
+        padding: 26px 30px;
 
         text-decoration: none;
         font-size: 18px;
@@ -631,34 +652,32 @@ button {
 
     /* Main Page */
     .main-title {
-        font-size: 64px;
+        font-size: 76px;
         font-weight: bolder;
         color: var(--primary-color);
         margin: 0;
     }
     .sub-title {
-        font-size: 28px;
+        font-size: 50px;
         font-weight: lighter;
-        margin: 0 auto;
-    }
-    #book-cover {
-        display: block;
-        width: 40%;
-        margin: 0px auto;
+        margin: 4px auto 0;
+        color: black;
     }
 
+    .left-column button {
+        margin: 0 12%;
+    }
     #cover-div {
         margin-top: 20px;
     }
     .main-description {
-        margin: 12px 0;
+        margin: 16px 0;
         text-align: start;
         text-indent: 30px;
         font-size: 16px;
     }
     .kwur-embed {
-        width: 80%;
-        margin: 10px auto 20px;
+        margin: 20px 0 0;
         border-radius: 10px;
     }
 
@@ -674,8 +693,8 @@ button {
         gap: 28px;
     
         width: 80%;
-        height: 180px;
-        margin: 0;
+        height: 210px;
+        margin: 20px 0 0;
     
         overflow-x: scroll;
         overflow-y:hidden;
@@ -705,7 +724,7 @@ button {
         height: var(--interview-bubble-size);
     
         color: var(--primary-color);
-        font-size: 64px;
+        font-size: 70px;
         background-color: var(--tertiary-color);
         border: 2px solid var(--tertiary-color); 
         border-radius: 50%;
@@ -742,11 +761,12 @@ button {
         justify-content: center;
         align-items: stretch;
 
-        margin: 0 20%;
+        margin: 0 16%;
     }
     #more-info-div button {
         flex: 1 0;
-        margin: 10px 10px;
+        padding: 0 30px;
+        margin: 20px 16px;
     }
 
 
@@ -798,13 +818,7 @@ button {
 }
 
 /* Responsive formatting for desktop screen changes */
-@media only screen and (min-device-width : 1024px) and (max-width: 700px){
-    .interview-row-nav-button {
-        display: none;
-    }
-    #split-description, #lower-desc, #lower-kwur-embed {
-        display: none;
-    }
+@media only screen and (min-device-width : 1025px) and (max-width: 700px){
     #lower-split-desc {
         margin: 0 var(--horizontal-margin);
     }
@@ -812,12 +826,7 @@ button {
         margin: 20px 14%;
     }
 }
-@media only screen and (min-device-width : 1024px) and (min-width: 701px) and (max-width: 950px) {
-    #book-cover {
-        display: block;
-        width: 35% !important;
-        margin: 14px auto 12px;
-    }
+@media only screen and (min-device-width : 1025px) and (min-width: 701px) and (max-width: 950px) {
     .interview-row-nav-button {
         display: none;
     }
@@ -827,29 +836,13 @@ button {
     #lower-desc {
         margin: 0 var(--horizontal-margin);
     }
-    .kwur-embed {
-        margin: 10px 0 20px;
-    }
     #more-info-div {
         margin: 20px 14%;
     }
 }
-/* Make book cover a little bigger when screen is less wide */
-@media only screen and (min-device-width : 1024px) and (min-width: 951px) and (max-width: 1200px) {
-    #book-cover {
-        display: block;
-        width: 45% !important;
-        margin: 10px auto;
-    }
-}
-@media only screen and (min-device-width : 1024px) and (min-width: 951px) {
-    #lower-desc, #lower-kwur-embed, #lower-split-desc, #lower-split-kwur-embed {
-        display: none;
-    }
-    #book-cover {
-        display: block;
-        width: 35%;
-        margin: 10px auto;
+@media only screen and (min-device-width : 1025px) and (min-width: 951px) {
+    .left-column button {
+        margin-bottom: 16px;
     }
     #cover-div {
         display: flex;
@@ -859,11 +852,6 @@ button {
     }
     #split-description {
         margin: 0;
-    }
-    .kwur-embed {
-        width: 100%;
-        margin: 20px auto 0;
-        border-radius: 10px;
     }
 
     #more-info-div {
@@ -875,6 +863,10 @@ button {
 
 
 /* Universal styling (all screens) */
+#dropdown-container {
+    font-family: "Special Elite", system-ui;
+    font-style: normal;
+}
 .topnav a:hover, .nav-dropdown button:hover {
     color: var(--primary-color-hover);
     cursor: pointer;
@@ -882,6 +874,43 @@ button {
 #dropdown-container a:hover {
     background-color: #ecf6ff;
     color: var(--primary-color-hover);
+}
+
+#main-div {
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    margin: 20px 16% 20px;
+    gap: 2%;
+}
+#main-div div {
+    display: flex;
+    flex-direction: column;
+}
+.left-column {
+    flex: 1;
+    min-width: 0;
+}
+.left-column img {
+    flex-grow: 1;
+    width: 120%;
+    object-fit: scale-down;
+}
+.left-column button {
+    padding: 40px 30px;
+    font-size: 28px;
+    font-weight: 600;
+    font-variant: small-caps;
+}
+.right-column {
+    flex: 1;
+    min-width: 0;
+}
+#book-cover {
+    width: 80%;
+    margin: 0 auto;
+    height: auto;
+    display: block;
 }
 
 #interview-div {
@@ -899,6 +928,9 @@ button {
 .interview-thumbnail::before {
     position: relative;
     top: 20%;
+}
+.interview-thumbnail {
+    object-fit: cover;
 }
 .interview-locked {
     color: darkgrey;
@@ -936,6 +968,65 @@ button {
     transform: translateY(2px);
 }
 
+.overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+    transition: visibility 0s 0.3s;
+}
+.overlay-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    max-height: 98%;
+    max-width: 90%;
+
+    background-color: white;
+    border-radius: 20px;
+}
+.popup-img {
+    border-radius: 20px;
+    max-width: 90%;
+    max-height: 90%;
+    margin: 0 auto;
+
+    transition: transform var(--button-transition-time);
+}
+.popup-img:hover {
+    transform: translate(-2px, -2px);
+}
+.popup-buttons {
+    margin: 10px 0 20px;
+}
+.popup-buttons button {
+    padding: 14px 20px;
+    margin: 0 10px;
+}
+.close-btn {
+    padding: 0 14px;
+    margin: -8px -12px auto auto;
+
+    color: var(--primary-color);
+    background-color: var(--tertiary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    font-size: 30px;
+    cursor: pointer;
+}
+.close-btn:hover {
+    background-color: var(--secondary-color);
+}
+
 
 
 /* INTERVIEW PAGE */
@@ -966,15 +1057,60 @@ button {
     justify-content: stretch;
     align-items: center;
     gap: 20px;
+    height: fit-content;
+}
+.pfp-div {
+    position: relative;
+    height: 100px;
+    width: fit-content;
+    transition: transform var(--button-fast-transition-time);
+}
+.pfp-div:hover {
+    transform: translate(-1px, -1px);
+}
+.interview-block-thumbnail {
+    position: relative;
+    border-radius: 50%;
+    height: inherit;
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: box-shadow var(--button-fast-transition-time);
+}
+.interview-block-thumbnail:hover {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+.pfp-div i {
+    position: absolute;
+    bottom: 0;
+    right: -14px;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 2;
+ 
+    background-color: var(--tertiary-color);
+    transition: background-color var(--button-fast-transition-time);
+}
+.pfp-div i:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.interview-header {
+    margin: auto auto auto 10px;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+    text-align: right;
 }
 .interview-name {
     text-align: left;
-    margin: 0;
+    flex: 1 1 300px;
+    margin: 0 0 8px;
 }
 .interview-date {
-    flex-grow: 1;
-
-    text-align: right;
+    text-align: left;
     font-weight: lighter;
     font-style: italic;
     margin: 0;
@@ -1016,6 +1152,19 @@ button {
 }
 
 
+/* ABOUT PAGE */
+#about-container {
+    margin: 0 12%;
+}
+#about-container h1 {
+    margin-bottom: 20px;
+}
+#about-kwur {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+
 
 /* General button styling */
 .filled-button {
@@ -1051,7 +1200,7 @@ button {
     overflow: hidden;
 
     color: var(--primary-color);
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgb(255, 255, 255);
 
     padding: var(--button-padding);
     border: 2px solid var(--primary-color);
@@ -1067,7 +1216,7 @@ button {
     position: absolute;
     top: 0;
     left: 0;
-    width: 105%;
+    width: 110%;
     height: 100%;
     border-radius: var(--button-fill-radius);
 

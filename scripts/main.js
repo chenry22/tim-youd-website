@@ -1,11 +1,6 @@
-// const names = ["Interviewee 1 TEST EST", "Interviewee 2", "Interviewee 3", "Interviewee 4", "Interviewee 5", 
-//     "Interviewee 6", "Interviewee 7", "Interviewee 8", "Interviewee 9", "Interviewee 10",
-//     "Interviewee 11", "Interviewee 12", "Interviewee 13", "Interviewee 14", "Interviewee 15",
-//     "Interviewee 16", "Interviewee 17", "Interviewee 18", "Interviewee 19", "Interviewee 20"];
-// const images = ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", ];
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const numInterviews = 14;
 
-const interviewBubbleWidth = 200;
-const numInterviews = 20;
 var currentInterviewBubble = 0;
 const dataQueryURL = "https://script.google.com/macros/s/AKfycbxx-NZ96PYfr-f9bCb-gAu4QFJQ8TL2krCMI2BoNp_egQnY-v_WWkfUS3_iZKuajvS4/exec";
 
@@ -15,13 +10,6 @@ function createInterviewBubbles() {
     for(var i = 0; i < numInterviews; i++){
         var interviewBubble = document.createElement('div');
         interviewBubble.classList.add("interview-bubble")
-
-        // var interviewThumbnail = document.createElement('img');
-        // interviewThumbnail.classList.add("interview-thumbnail");
-        // if(images[i] != "#"){
-        //     interviewThumbnail.src = images[i];
-        // }
-        // interviewThumbnail.alt = "";
 
         var interviewThumbnail = document.createElement('i');
         interviewThumbnail.classList.add("fa-solid", "fa-lock", "interview-thumbnail", "interview-locked");
@@ -55,21 +43,44 @@ async function loadUnlockedInterviews() {
 
         var i = 0;
         const interviews = await response.json();
-        interviews.forEach(interview => {
+        console.log(interviews);
+        interviews.forEach(interview => { // date, name, vid, audio, personal link
             var dateInfo = new Date(interview[0]);
-            bubbles[i].getElementsByClassName("interview-card")[0].innerText = interview[1];
-
-            var thumbnail = bubbles[i].getElementsByClassName("interview-thumbnail")[0];
             if(dateInfo <= currDate){
-                thumbnail.classList.remove("interview-locked", "fa-lock");
-                thumbnail.classList.add("fa-microphone");
-                bubbles[i].setAttribute('onclick', "goToURL('" + interview[4] + "')");
+                var thumbnail = bubbles[i].getElementsByClassName("interview-thumbnail")[0];
+                var name = interview[1];
+                bubbles[i].getElementsByClassName("interview-card")[0].innerText = name;
+                
+                var img = document.createElement('img');
+                img.classList.add("interview-thumbnail");
+                img.src = "/images/thumbnails/" + name.toLowerCase().replace(/\s/g, '-') + ".png";
+                img.alt = name;
+                
+                thumbnail.replaceWith(img);
+                bubbles[i].setAttribute('onclick', "showFullImage('" + name + "', '" + interview[3] + "', '" + interview[4] + "')");
+            } else {
+                var dateTxt = "[ " + monthNames[dateInfo.getMonth()] + " " + dateInfo.getDate() + " ]";
+                bubbles[i].getElementsByClassName("interview-card")[0].innerText = dateTxt;
             }
             i++;
         });
     } catch (error) {
         console.error("Failed loading from Google Apps Script: " + error.message);
     }
+}
+
+function showFullImage(name, audioLink, extraLink) {
+    // set buttons to appropriate onclick
+    document.getElementById('full-interview-button').setAttribute('onclick', "goToURL('" + audioLink + "')");
+    document.getElementById('more-info-button').setAttribute('onclick', "goToURL('" + extraLink + "')");
+
+    // toggle image overlay (toggle hidden attribute)
+    document.getElementById('popup-img').setAttribute('src', "images/tiles/" + name.toLowerCase().replace(/\s/g, '-') + ".png");
+    document.getElementById('popup-img').setAttribute('alt', name);
+    document.getElementById('popup').classList.toggle('hidden');
+}
+function closeFullImage() {
+    document.getElementById('popup').classList.toggle('hidden');
 }
 
 function moveInterviewRow(left) {
@@ -112,4 +123,10 @@ function goToURL(url){
 
 document.addEventListener("DOMContentLoaded", (event) => {
     createInterviewBubbles();
+
+    document.getElementById('popup').addEventListener('click', function (e) {
+        if (!document.getElementById('popup').classList.contains('hidden') && e.target === this) {
+            closeFullImage();
+        }
+    });
 });

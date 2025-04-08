@@ -13,6 +13,7 @@
         <!-- font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
         <!-- project-specific styling/functionality -->
@@ -34,7 +35,7 @@
                 <div id="dropdown-container" class="hidden">
                     <a href="#">Main</a>
                     <a href="/interviews.html">Interviews</a>
-                    <!-- <a href="/about.html">About</a> -->
+                    <a href="/about.html">About</a>
                 </div>
             </div>
         </div>
@@ -42,23 +43,14 @@
         <h1 class="main-title">Up All Night</h1>
         <h3 class="sub-title">with Tim Youd</h3>
 
-        <div id="cover-div">
-            <img id="book-cover" src="images/book_cover.jpg"/>
-
-            <div id="split-description">
-                <p class="main-description">
-                    Beginning Sunday, April 13, and continuing nightly through Thursday, May 1, Los Angeles based performance and visual artist Tim Youd will be retyping the great Stanley Elkin’s novel <i>The Dick Gibson Show (1971)</i>, followed by his short story collection <i>Criers and Kibitzers, Kibitzers and Criers (1966)</i> on <a href="http://kwur.wustl.edu">St. Louis’ Washington University’s campus radio station KWUR</a>. 
-                    Entitled "Up All Night with Tim Youd and Stanley Elkin,” the show will air from Midnight to 5:00 AM Sundays through Thursdays, 11:00 PM to 5:00 PM on Fridays, and 10:00 PM to 5:00 AM on Saturdays. 
-                    This performance is part of Youd’s long-running 100 Novels Project. The retyping of <i>The Dick Gibson Show</i> will be the 84th novel he has retyped and is being done in conjunction with the Olin Library, where Stanley and Joan Elkin’s Artistic Kingdom exhibition is currently on view. 
-                    The Olin Library holds Stanley Elkin’s papers. Elkin (1930-1995) taught at WashU in the English Department for decades. 
-                </p>
-                <p class="main-description">
-                    <i>The Dick Gibson Show</i> tells the story of an all-night radio talk show host, and that fact, along with the current Elkin exhibition at the Olin, informed Youd’s idea to retype the novel in the overnight hours on KWUR. 
-                    Each evening, at the top of the show, and in tribute to the conceit of the novel, Youd will conduct one or two interviews of his own with various artists, writers, curators, critics, librarians, typewriter historians, typewriter repairmen, and astrologers (see below for the current list of guests). 
-                    Each night following the interviews, Youd will play a short archival clip of Elkin himself reading from his novels. 
-                    Then, Youd will begin the evening’s retyping, and the sound of the typewriter alone will fill the airwaves until sign-off at 5:00 AM.
-                </p>
-
+        <div id="main-div">
+            <div class="left-column">
+                <!-- LITTLE ANIMATION OF TALKING WOULD BE COOL -->
+                <img src="images/tim-youd-transparent.png" alt="Host/Retypist Tim Youd"/>
+                <button class="filled-button" onclick="window.location.href='about.html'">Up All Night</button>
+            </div>
+            <div class="right-column">
+                <img id="book-cover" src="images/book_cover.png"/>
                 <iframe class="kwur-embed" src="https://mixlr.com/users/4072220/embed" frameborder="no" marginheight="0" marginwidth="0"></iframe>
             </div>
         </div>
@@ -75,55 +67,17 @@
             </div>
         </div>
 
-        <button id="view-all-interviews-button" class="filled-button" onclick="location.href='interviews.html'">View All Interviews</button>
-
-        <!-- For medium sized screens -->
-        <div id="lower-desc">
-            <p class="main-description">
-                Beginning Sunday, April 13, and continuing nightly through Thursday, May 1, Los Angeles based performance and visual artist Tim Youd will be retyping the great Stanley Elkin’s novel <i>The Dick Gibson Show (1971)</i>, followed by his short story collection <i>Criers and Kibitzers, Kibitzers and Criers (1966)</i> on <a href="http://kwur.wustl.edu">St. Louis’ Washington University’s campus radio station KWUR</a>. 
-                Entitled "Up All Night with Tim Youd and Stanley Elkin,” the show will air from Midnight to 5:00 AM Sundays through Thursdays, 11:00 PM to 5:00 PM on Fridays, and 10:00 PM to 5:00 AM on Saturdays. 
-            </p>
-            <p class="main-description">
-                This performance is part of Youd’s long-running 100 Novels Project. The retyping of <i>The Dick Gibson Show</i> will be the 84th novel he has retyped and is being done in conjunction with the Olin Library, where Stanley and Joan Elkin’s Artistic Kingdom exhibition is currently on view. 
-                The Olin Library holds Stanley Elkin’s papers.
-                Elkin (1930-1995) taught at WashU in the English Department for decades. 
-                <i>The Dick Gibson Show</i> tells the story of an all-night radio talk show host, and that fact, along with the current Elkin exhibition at the Olin, informed Youd’s idea to retype the novel in the overnight hours on KWUR. 
-            </p>
-            <p class="main-description">
-                Each evening, at the top of the show, and in tribute to the conceit of the novel, Youd will conduct one or two interviews of his own with various artists, writers, curators, critics, librarians, typewriter historians, typewriter repairmen, and astrologers (see above for the current list of guests). 
-                Each night following the interviews, Youd will play a short archival clip of Elkin himself reading from his novels. 
-                Then, Youd will begin the evening’s retyping, and the sound of the typewriter alone will fill the airwaves until sign-off at 5:00 AM.
-            </p>
+        <div class="overlay hidden" id="popup">
+            <div class="overlay-container" onclick="event.stopPropagation()">
+                <span class="close-btn" onclick="closeFullImage()">&times;</span>
+                <img id="popup-img" class="popup-img" src="" alt="Full Image">
+                <div class="popup-buttons">
+                    <button id="full-interview-button" class="filled-button">Full Interview</button>
+                    <button id="more-info-button" class="stroke-button">Learn More</button>
+                </div>
+            </div>
         </div>
 
-        <!-- Better readability for smaller screens -->
-        <div id="lower-split-desc">
-            <p class="main-description">
-                Beginning Sunday, April 13, and continuing nightly through Thursday, May 1, Los Angeles based performance and visual artist Tim Youd will be retyping the great Stanley Elkin’s novel <i>The Dick Gibson Show (1971)</i>, followed by his short story collection <i>Criers and Kibitzers, Kibitzers and Criers (1966)</i> on <a href="http://kwur.wustl.edu">St. Louis’ Washington University’s campus radio station KWUR</a>. 
-                Entitled "Up All Night with Tim Youd and Stanley Elkin,” the show will air from Midnight to 5:00 AM Sundays through Thursdays, 11:00 PM to 5:00 PM on Fridays, and 10:00 PM to 5:00 AM on Saturdays.
-            </p>
-
-            <iframe id="lower-split-kwur-embed" class="kwur-embed" src="https://mixlr.com/users/4072220/embed" frameborder="no" marginheight="0" marginwidth="0"></iframe>
-
-            <p class="main-description">
-                This performance is part of Youd’s long-running 100 Novels Project. The retyping of <i>The Dick Gibson Show</i> will be the 84th novel he has retyped and is being done in conjunction with the Olin Library, where Stanley and Joan Elkin’s Artistic Kingdom exhibition is currently on view. 
-                The Olin Library holds Stanley Elkin’s papers. Elkin (1930-1995) taught at WashU in the English Department for decades. 
-            </p>
-            <p class="main-description">
-                <i>The Dick Gibson Show</i> tells the story of an all-night radio talk show host, and that fact, along with the current Elkin exhibition at the Olin, informed Youd’s idea to retype the novel in the overnight hours on KWUR. 
-                Each evening, at the top of the show, and in tribute to the conceit of the novel, Youd will conduct one or two interviews of his own with various artists, writers, curators, critics, librarians, typewriter historians, typewriter repairmen, and astrologers (see above for the current list of guests). 
-            </p>
-            <p class="main-description">
-                Each night following the interviews, Youd will play a short archival clip of Elkin himself reading from his novels. 
-                Then, Youd will begin the evening’s retyping, and the sound of the typewriter alone will fill the airwaves until sign-off at 5:00 AM.
-            </p>
-        </div>
-
-        <iframe id="lower-kwur-embed" class="kwur-embed" src="https://mixlr.com/users/4072220/embed" frameborder="no" marginheight="0" marginwidth="0"></iframe>
-
-        <div id="more-info-div">
-            <button class="stroke-button" txt="More About Tim Youd" onclick="goToURL('https://www.cristintierney.com/artists/30-tim-youd/biography/')">More About Tim Youd</button>
-            <button class="stroke-button" txt="Stanley and Joan Elkin Exhibit" onclick="goToURL('https://library.washu.edu/exhibitions/elkins-artistic-kingdom/')">Stanley and Joan Elkin Exhibit</button>
-        </div>
+        <button id="view-all-interviews-button" class="stroke-button" onclick="location.href='interviews.html'">View All Interviews</button>
     </body>
 </html>
