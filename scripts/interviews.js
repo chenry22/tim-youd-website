@@ -22,26 +22,22 @@ function loadInterviewBlocks(interviews){
         var dateInfo = new Date(interview[0]);
         date.innerText = monthNames[dateInfo.getMonth()] + " " + dateInfo.getDate() + ", " + dateInfo.getFullYear();
 
-        if(dateInfo <= Date.now()) {
-            var pfpDiv = document.createElement('div');
-            pfpDiv.id = interview[1].toLowerCase().replace(/\s/g, '-');
-            pfpDiv.classList.add('pfp-div');
-            pfpDiv.setAttribute('onclick', "showFullImage('" + interview[1] + "', '" + interview[3] + "')");
+        var pfpDiv = document.createElement('div');
+        pfpDiv.id = interview[1].toLowerCase().replace(/\s/g, '-');
+        pfpDiv.classList.add('pfp-div');
+        pfpDiv.setAttribute('onclick', "showFullImage('" + interview[1] + "', '" + interview[3] + "')");
 
-            var pfp = document.createElement('img');
-            pfp.src = "images/thumbnails/" + interview[1].toLowerCase().replace(/\s/g, '-') + ".png";
-            pfp.alt = interview[1];
-            pfp.classList.add("interview-block-thumbnail");
-            var toggleFull = document.createElement('i');
-            toggleFull.classList.add("fa-solid", "fa-up-right-and-down-left-from-center");
-            pfpDiv.appendChild(pfp);
-            pfpDiv.appendChild(toggleFull);
+        var pfp = document.createElement('img');
+        pfp.src = "images/thumbnails/" + interview[1].toLowerCase().replace(/\s/g, '-') + ".png";
+        pfp.alt = interview[1];
+        pfp.classList.add("interview-block-thumbnail");
+        var toggleFull = document.createElement('i');
+        toggleFull.classList.add("fa-solid", "fa-up-right-and-down-left-from-center");
+        pfpDiv.appendChild(pfp);
+        pfpDiv.appendChild(toggleFull);
 
-            name.innerText = interview[1];
-            title.appendChild(pfpDiv);
-        } else {
-            name.innerText = "[ Locked ]";
-        }
+        name.innerText = interview[1];
+        title.appendChild(pfpDiv);
 
         // create basic block
         var interviewBlock = document.createElement('div');
@@ -76,7 +72,6 @@ function loadInterviewBlocks(interviews){
             fullInterviewButton.classList.add('filled-button');
             fullInterviewButton.innerText = "Full Interview"
             fullInterviewButton.setAttribute('onclick', "goToURL('" + interview[3] + "')");
-
             interviewBlock.appendChild(fullInterviewButton);
         } else {
             // timer countdown

@@ -1,6 +1,10 @@
 const interviewBubbleWidth = 200;
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const numInterviews = 14;
+const interviewees = ["Amy Smith-Stewart", "Ed Park", "Ginger Shulick Porcella", "Brian Boucher", 
+    "MK Guth", "Marie Schley", "Hannah Griggs & Shanna Early", "Claudia Parducci", 
+    "Liesl Olson", "Abel Alejandre", "Richard Polt", "Allison C Meier", 
+    "Carolina Miranda", "Cristin Tierney"
+];
 
 var currentInterviewBubble = 0;
 const dataQueryURL = "https://script.google.com/macros/s/AKfycbxx-NZ96PYfr-f9bCb-gAu4QFJQ8TL2krCMI2BoNp_egQnY-v_WWkfUS3_iZKuajvS4/exec";
@@ -8,68 +12,29 @@ const dataQueryURL = "https://script.google.com/macros/s/AKfycbxx-NZ96PYfr-f9bCb
 function createInterviewBubbles() {
     var interviewRow = document.getElementById("interview-row");
 
-    for(var i = 0; i < numInterviews; i++){
+    for(var i = 0; i < interviewees.length; i++){
+        var name = interviewees[i];
         var interviewBubble = document.createElement('div');
         interviewBubble.classList.add("interview-bubble")
 
-        var interviewThumbnail = document.createElement('i');
-        interviewThumbnail.classList.add("fa-solid", "fa-lock", "interview-thumbnail", "interview-locked");
+        var img = document.createElement('img');
+        img.classList.add("interview-thumbnail");
+        img.src = "/images/thumbnails/" + name.toLowerCase().replace(/\s/g, '-') + ".png";
+        img.alt = name;
 
         var interviewCard = document.createElement('div');
         interviewCard.classList.add("interview-card");
-        interviewCard.innerHTML = "---"; // names[i];
+        interviewCard.innerHTML = name;
 
-        interviewBubble.appendChild(interviewThumbnail);
+        interviewBubble.appendChild(img);
         interviewBubble.appendChild(interviewCard);
+        interviewBubble.setAttribute('onclick', "showFullImage('" + name + "')");
+
         interviewRow.appendChild(interviewBubble);
     }
-
-    loadUnlockedInterviews();
 }
 
-async function loadUnlockedInterviews() {
-    const bubbles = document.getElementsByClassName("interview-bubble");
-    const currDate = Date.now();
-
-    try {
-        const response = await fetch(dataQueryURL, {
-            redirect: "follow",
-            method : 'GET',
-            headers: {
-              'Content-Type': "text/plain;charset=utf-8"
-            }});
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        var i = 0;
-        const interviews = await response.json();
-        interviews.forEach(interview => { // date, name, vid, audio, personal link
-            var dateInfo = new Date(interview[0]);
-            if(dateInfo <= currDate){
-                var thumbnail = bubbles[i].getElementsByClassName("interview-thumbnail")[0];
-                var name = interview[1];
-                bubbles[i].getElementsByClassName("interview-card")[0].innerText = name;
-                
-                var img = document.createElement('img');
-                img.classList.add("interview-thumbnail");
-                img.src = "/images/thumbnails/" + name.toLowerCase().replace(/\s/g, '-') + ".png";
-                img.alt = name;
-                
-                thumbnail.replaceWith(img);
-                bubbles[i].setAttribute('onclick', "showFullImage('" + name + "', '" + interview[3] + "')");
-            } else {
-                var dateTxt = "[ " + monthNames[dateInfo.getMonth()] + " " + dateInfo.getDate() + " ]";
-                bubbles[i].getElementsByClassName("interview-card")[0].innerText = dateTxt;
-            }
-            i++;
-        });
-    } catch (error) {
-        console.error("Failed loading from Google Apps Script: " + error.message);
-    }
-}
-
-function showFullImage(name, audioLink) {
+function showFullImage(name) {
     // set buttons to appropriate onclick
     document.getElementById('full-interview-button').setAttribute('onclick', "window.location.href='interviews.html?interview=" + name.toLowerCase().replace(/\s/g, '-') + "';");
 

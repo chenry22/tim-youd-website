@@ -71,7 +71,7 @@ button {
         --navbar-font-size: 34px;
     
         /* INTERVIEWS */
-        --interview-bubble-size: 90px;
+        --interview-bubble-size: 96px;
 
         /* BUTTONS */
         --button-font-size: 20px;
@@ -170,6 +170,7 @@ button {
     }
 
 
+
     /* Interview Row */
     .interview-row-nav-button button {
         display: none;
@@ -184,7 +185,7 @@ button {
         gap: 20px;
     
         width: 80%;
-        height: 130px;
+        height: fit-content;
         margin: 0 0 0;
     
         overflow-x: scroll;
@@ -195,9 +196,10 @@ button {
     .interview-bubble {
         flex-shrink: 0;
         width: var(--interview-bubble-size);
-        height: 100%;
+        height: fit-content;
     
-        display: grid;
+        display: flex;
+        flex-direction: column;
         cursor: pointer;
     }
     .interview-bubble:hover .interview-thumbnail {
@@ -207,6 +209,7 @@ button {
         box-shadow: 0px 0px 20px rgba(0, 0, 139, 0.1);
     }
     .interview-thumbnail {
+        position: relative;
         grid-column: 1;
         grid-row: 1;
     
@@ -215,23 +218,21 @@ button {
         height: var(--interview-bubble-size);
     
         color: var(--primary-color);
-        font-size: 50px;
         background-color: var(--tertiary-color);
         border: 2px solid var(--tertiary-color); 
         border-radius: 50%;
         transition: box-shadow var(--button-fast-transition-time);
     }
     .interview-card {
-        font-size: 13px;
+        position: relative;
+        font-size: 12px;
         text-align: center;
         grid-column: 1;
         grid-row: 1;
-    
         height: fit-content;
-        margin: auto 0 0;
-        padding: 4px 10px;
+        margin: -12px 0 0;
+        padding: 4px 4px;
         z-index: 2;
-    
         background-color: var(--secondary-color);
         border: 2px solid var(--primary-color);
         border-radius: 10px;
@@ -240,7 +241,7 @@ button {
     
     #view-all-interviews-button {
         padding: 20px 30px;
-        margin: 0 0 20px;
+        margin: 10px 0 20px;
     
         font-size: 20px;
         font-weight: 500;
@@ -260,19 +261,28 @@ button {
     }
 
 
+
     /* INTERVIEW PAGE */
-    .interview-block {
-        flex: 1 0 0;
-    }
     #interviews-container {
         margin: 20px var(--horizontal-margin);
         gap: 30px;
     }
     .interview-block {
+        flex: 1 0 0;
         padding: 14px 18px;
     }
+    .pfp-div {
+        position: relative;
+        height: 86px;
+        width: fit-content;
+        transition: transform var(--button-fast-transition-time);
+    }
     .interview-name {
-        font-size: 24px;
+        text-align: left;
+        flex: 1 1 300px;
+        margin: 0 0 8px;
+
+        font-size: 22px;
         font-weight: 700;
     }
     .interview-date {
@@ -437,13 +447,15 @@ button {
         border-radius: 10px;
     }
 
-
+    
+    
     /* Interview Row */
     .interview-row-nav-button button {
         display: none;
     }
 
     #interview-row {
+        height: fit-content;
         flex-grow: 1;
         flex-shrink: 0;
     
@@ -453,20 +465,19 @@ button {
         gap: 30px;
     
         width: 100%;
-        height: 220px;
         margin: 0 0 10px;
     
         overflow-x: scroll;
         overflow-y:hidden;
         scrollbar-width: none;
     }
-
     .interview-bubble {
         flex-shrink: 0;
         width: var(--interview-bubble-size);
-        height: 100%;
+        height: fit-content;
     
-        display: grid;
+        display: flex;
+        flex-direction: column;
         cursor: pointer;
     }
     .interview-bubble:hover .interview-thumbnail {
@@ -476,6 +487,7 @@ button {
         box-shadow: 0px 0px 20px rgba(0, 0, 139, 0.1);
     }
     .interview-thumbnail {
+        position: relative;
         grid-column: 1;
         grid-row: 1;
     
@@ -484,20 +496,19 @@ button {
         height: var(--interview-bubble-size);
     
         color: var(--primary-color);
-        font-size: 86px;
         background-color: var(--tertiary-color);
         border: 2px solid var(--tertiary-color); 
         border-radius: 50%;
         transition: box-shadow var(--button-fast-transition-time);
     }
     .interview-card {
-        font-size: 22px;
+        font-size: 20px;
         text-align: center;
         grid-column: 1;
         grid-row: 1;
     
         height: fit-content;
-        margin: auto 0 8px;
+        margin: -14px 0 8px;
         padding: 10px 6px;
         z-index: 2;
     
@@ -508,10 +519,10 @@ button {
     }
     
     #view-all-interviews-button {
-        padding: 30px 40px;
-        margin: 0 0 20px;
+        padding: 34px 40px;
+        margin: 16px 0 20px;
     
-        font-size: 30px;
+        font-size: 32px;
         font-weight: 500;
     }
 
@@ -530,17 +541,25 @@ button {
 
 
     /* INTERVIEW PAGE */
-    .interview-block {
-        flex: 1 0 400px;
-    }
     #interviews-container {
         margin: 40px var(--horizontal-margin);
         gap: 40px;
     }
     .interview-block {
+        flex: 1 0 400px;
         padding: 20px 30px;
     }
+    .pfp-div {
+        position: relative;
+        height: 110px;
+        width: fit-content;
+        transition: transform var(--button-fast-transition-time);
+    }
     .interview-name {
+        text-align: left;
+        flex: 1 1 400px;
+        margin: 0 0 8px;
+
         font-size: 40px;
         font-weight: 700;
     }
@@ -683,7 +702,7 @@ button {
         display: flex;
         justify-content: stretch;
         align-items: stretch;
-        margin: 20px 16% 10px;
+        margin: 20px 14% 10px;
         gap: 2%;
     }
     #cover-div {
@@ -710,10 +729,10 @@ button {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 28px;
+        gap: 30px;
     
         width: 80%;
-        height: 210px;
+        height: fit-content;
         margin: 20px 0 0;
     
         overflow-x: scroll;
@@ -724,9 +743,10 @@ button {
     .interview-bubble {
         flex-shrink: 0;
         width: var(--interview-bubble-size);
-        height: 100%;
+        height: fit-content;
     
-        display: grid;
+        display: flex;
+        flex-direction: column;
         cursor: pointer;
     }
     .interview-bubble:hover .interview-thumbnail {
@@ -736,6 +756,7 @@ button {
         box-shadow: 0px 0px 20px rgba(0, 0, 139, 0.1);
     }
     .interview-thumbnail {
+        position: relative;
         grid-column: 1;
         grid-row: 1;
     
@@ -751,13 +772,14 @@ button {
         transition: box-shadow var(--button-fast-transition-time);
     }
     .interview-card {
-        font-size: 18px;
+        position: relative;
+        font-size: 17px;
         text-align: center;
         grid-column: 1;
         grid-row: 1;
     
         height: fit-content;
-        margin: auto 0 8px;
+        margin: -14px 0 8px;
         padding: 10px 6px;
         z-index: 2;
     
@@ -769,9 +791,9 @@ button {
     
     #view-all-interviews-button {
         padding: 30px 50px;
-        margin: 10px 0 20px;
+        margin: 20px 0 20px;
     
-        font-size: 24px;
+        font-size: 26px;
         font-weight: 500;
     }
 
@@ -792,17 +814,25 @@ button {
 
 
     /* INTERVIEW PAGE */
-    .interview-block {
-        flex: 1 0 400px;
-    }
     #interviews-container {
         margin: 40px var(--horizontal-margin);
         gap: 30px;
     }
     .interview-block {
+        flex: 1 0 400px;
         padding: 20px 28px;
     }
+    .pfp-div {
+        position: relative;
+        height: 100px;
+        width: fit-content;
+        transition: transform var(--button-fast-transition-time);
+    }
     .interview-name {
+        text-align: left;
+        flex: 1 1 300px;
+        margin: 0 0 8px;
+
         font-size: 26px;
         font-weight: 700;
     }
@@ -919,17 +949,8 @@ button {
 #interview-row::-webkit-scrollbar {
     display: none;  /* Hide the scrollbar on webkit browsers */
 }
-.interview-thumbnail::before {
-    position: relative;
-    top: 20%;
-}
 .interview-thumbnail {
     object-fit: cover;
-}
-.interview-locked {
-    color: darkgrey;
-    background-color: var(--locked-color);
-    cursor: default;
 }
 
 .interview-row-nav-button button {
@@ -993,7 +1014,7 @@ button {
     max-width: 100%;
     max-height: 100%;
     border-radius: 20px;
-    margin: 0 auto;
+    margin: 0 auto 4px;
 
     object-fit: contain;
     overflow: hidden;
@@ -1004,7 +1025,7 @@ button {
 }
 .overlay-container button {
     padding: 14px 24px;
-    margin: 4px auto 10px;
+    margin: 0 auto 10px;
 }
 .close-btn {
     padding: 0 14px;
@@ -1054,12 +1075,6 @@ button {
     gap: 20px;
     height: fit-content;
 }
-.pfp-div {
-    position: relative;
-    height: 100px;
-    width: fit-content;
-    transition: transform var(--button-fast-transition-time);
-}
 .pfp-div:hover .interview-block-thumbnail {
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
 }
@@ -1095,11 +1110,6 @@ button {
 
     width: 100%;
     text-align: right;
-}
-.interview-name {
-    text-align: left;
-    flex: 1 1 300px;
-    margin: 0 0 8px;
 }
 .interview-date {
     text-align: left;
