@@ -33,12 +33,13 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('images/bg-texture.jpeg'); /* <-- your image path */
+
+    background-image: url('images/bg-texture.jpeg');
     background-size: cover;
     background-position: center;
-    opacity: 0.3; /* Adjust opacity here */
-    z-index: -1; /* Push behind page content */
-  }
+    opacity: 0.3;
+    z-index: -1;
+}
 h1 {
     font-family: "Special Elite", system-ui;
     font-style: normal;
@@ -302,6 +303,20 @@ button {
     .countdown-timer {
         font-size: 40px;
     }
+
+
+    
+    /* ABOUT PAGE */
+    #about-container {
+        margin: 0 6% 20px;
+    }
+    #about-container h1 {
+        margin-bottom: 20px;
+    }
+    #about-kwur {
+        width: 100%;
+        margin: 6px 0;
+    }
 }
 
 
@@ -557,6 +572,19 @@ button {
     .countdown-timer {
         font-size: 60px;
     }
+
+
+    /* ABOUT PAGE */
+    #about-container {
+        margin: 0 8%;
+    }
+    #about-container h1 {
+        margin-bottom: 20px;
+    }
+    #about-kwur {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
 
 
@@ -668,6 +696,7 @@ button {
         font-size: 16px;
     }
     .kwur-embed {
+        width: 80%;
         margin: 20px 0 0;
         border-radius: 10px;
     }
@@ -806,6 +835,23 @@ button {
     .countdown-timer {
         font-size: 40px;
     }
+
+    /* ABOUT PAGE */
+    #about-container {
+        margin: 0 12%;
+    }
+    #about-container h1 {
+        margin-bottom: 20px;
+    }
+    #about-kwur {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+@media only screen and (min-device-width : 1025px) and (max-width: 950px) {
+    .interview-row-nav-button {
+        display: none;
+    }
 }
 
 
@@ -934,26 +980,31 @@ button {
 .overlay-container {
     display: flex;
     flex-direction: column;
-    width: fit-content;
+
     height: fit-content;
-    max-height: 98%;
-    max-width: 94%;
+    width: fit-content;
+    max-height: 96%;
+    max-width: 96%;
 
     background-color: white;
     border-radius: 20px;
 }
 .popup-img {
+    max-width: 100%;
+    max-height: 100%;
     border-radius: 20px;
-    max-width: 90%;
-    max-height: 90%;
     margin: 0 auto;
+
+    object-fit: contain;
+    overflow: hidden;
+    transition: transform var(--button-transition-time);
 }
-.popup-buttons {
-    margin: 10px 0 20px;
+.popup-img:hover {
+    transform: rotate(-1deg);
 }
-.popup-buttons button {
-    padding: 14px 20px;
-    margin: 0 10px;
+.overlay-container button {
+    padding: 14px 24px;
+    margin: 4px auto 10px;
 }
 .close-btn {
     padding: 0 14px;
@@ -1090,19 +1141,6 @@ button {
 .countdown-timer {
     font-weight: bolder;
     margin: 0;
-}
-
-
-/* ABOUT PAGE */
-#about-container {
-    margin: 0 12%;
-}
-#about-container h1 {
-    margin-bottom: 20px;
-}
-#about-kwur {
-    width: 80%;
-    margin-bottom: 20px;
 }
 
 

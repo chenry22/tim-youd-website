@@ -24,8 +24,9 @@ function loadInterviewBlocks(interviews){
 
         if(dateInfo <= Date.now()) {
             var pfpDiv = document.createElement('div');
+            pfpDiv.id = interview[1].toLowerCase().replace(/\s/g, '-');
             pfpDiv.classList.add('pfp-div');
-            pfpDiv.setAttribute('onclick', "showFullImage('" + interview[1] + "', '" + interview[3] + "', '" + interview[4] + "')");
+            pfpDiv.setAttribute('onclick', "showFullImage('" + interview[1] + "', '" + interview[3] + "')");
 
             var pfp = document.createElement('img');
             pfp.src = "images/thumbnails/" + interview[1].toLowerCase().replace(/\s/g, '-') + ".png";
@@ -70,22 +71,13 @@ function loadInterviewBlocks(interviews){
             videoContainer.appendChild(vid);
             interviewBlock.appendChild(videoContainer);
 
-            // add buttons with links
+            // add buttons with links // TODO: make embed instead
             var fullInterviewButton = document.createElement('button');
             fullInterviewButton.classList.add('filled-button');
             fullInterviewButton.innerText = "Full Interview"
             fullInterviewButton.setAttribute('onclick', "goToURL('" + interview[3] + "')");
 
-            var artistBioButton = document.createElement('button');
-            artistBioButton.classList.add('stroke-button');
-            artistBioButton.innerText = "Learn More"
-            artistBioButton.setAttribute('onclick', "goToURL('" + interview[4] + "')");
-
-            var buttonContainer = document.createElement('div');
-            buttonContainer.classList.add('interview-button-container');
-            buttonContainer.appendChild(fullInterviewButton);
-            buttonContainer.appendChild(artistBioButton);
-            interviewBlock.appendChild(buttonContainer);
+            interviewBlock.appendChild(fullInterviewButton);
         } else {
             // timer countdown
             var availableIn = document.createElement('h3');
@@ -110,12 +102,7 @@ function loadInterviewBlocks(interviews){
     interviewContainer.classList.toggle("hidden");
 }
 
-function showFullImage(name, audioLink, extraLink) {
-    // set buttons to appropriate onclick
-    document.getElementById('full-interview-button').setAttribute('onclick', "goToURL('" + audioLink + "')");
-    document.getElementById('more-info-button').setAttribute('onclick', "goToURL('" + extraLink + "')");
-
-    // toggle image overlay (toggle hidden attribute)
+function showFullImage(name, audioLink) {
     document.getElementById('popup-img').setAttribute('src', "images/tiles/" + name.toLowerCase().replace(/\s/g, '-') + ".png");
     document.getElementById('popup-img').setAttribute('alt', name);
     document.getElementById('popup').classList.toggle('hidden');
@@ -166,6 +153,16 @@ async function fetchInterviewData() {
 
         const interviews = await response.json();
         loadInterviewBlocks(interviews);
+
+        // handle any requests (scroll to appropriate window)
+        const urlParams = new URLSearchParams(window.location.search);
+        if(urlParams.has('interview')){
+            var name = urlParams.get('interview').toLowerCase().replace(/\s/g, '-');
+            var scrollTo = document.getElementById(name);
+            if(scrollTo != null){
+                scrollTo.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+            }
+        }
     } catch (error) {
         loader.classList.toggle("hidden");
         err.classList.toggle("hidden");

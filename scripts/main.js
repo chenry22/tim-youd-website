@@ -1,3 +1,4 @@
+const interviewBubbleWidth = 200;
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const numInterviews = 14;
 
@@ -43,7 +44,6 @@ async function loadUnlockedInterviews() {
 
         var i = 0;
         const interviews = await response.json();
-        console.log(interviews);
         interviews.forEach(interview => { // date, name, vid, audio, personal link
             var dateInfo = new Date(interview[0]);
             if(dateInfo <= currDate){
@@ -57,7 +57,7 @@ async function loadUnlockedInterviews() {
                 img.alt = name;
                 
                 thumbnail.replaceWith(img);
-                bubbles[i].setAttribute('onclick', "showFullImage('" + name + "', '" + interview[3] + "', '" + interview[4] + "')");
+                bubbles[i].setAttribute('onclick', "showFullImage('" + name + "', '" + interview[3] + "')");
             } else {
                 var dateTxt = "[ " + monthNames[dateInfo.getMonth()] + " " + dateInfo.getDate() + " ]";
                 bubbles[i].getElementsByClassName("interview-card")[0].innerText = dateTxt;
@@ -69,10 +69,9 @@ async function loadUnlockedInterviews() {
     }
 }
 
-function showFullImage(name, audioLink, extraLink) {
+function showFullImage(name, audioLink) {
     // set buttons to appropriate onclick
-    document.getElementById('full-interview-button').setAttribute('onclick', "goToURL('" + audioLink + "')");
-    document.getElementById('more-info-button').setAttribute('onclick', "goToURL('" + extraLink + "')");
+    document.getElementById('full-interview-button').setAttribute('onclick', "window.location.href='interviews.html?interview=" + name.toLowerCase().replace(/\s/g, '-') + "';");
 
     // toggle image overlay (toggle hidden attribute)
     document.getElementById('popup-img').setAttribute('src', "images/tiles/" + name.toLowerCase().replace(/\s/g, '-') + ".png");
