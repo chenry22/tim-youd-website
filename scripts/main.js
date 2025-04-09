@@ -1,9 +1,9 @@
 const interviewBubbleWidth = 200;
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const interviewees = ["Amy Smith-Stewart", "Ed Park", "Ginger Shulick Porcella", "Brian Boucher", 
-    "MK Guth", "Marie Schley", "Hannah Griggs & Shanna Early", "Claudia Parducci", 
-    "Liesl Olson", "Abel Alejandre", "Richard Polt", "Allison C Meier", 
-    "Carolina Miranda", "Cristin Tierney"
+    "MK Guth", "Julia Whitehead", "Marie Schley", "Hannah Griggs & Shanna Early", 
+    "Claudia Parducci", "Liesl Olson", "Abel Alejandre", "Bethany Ball", 
+    "Richard Polt", "Allison C Meier", "Carolina Miranda", "Cristin Tierney"
 ];
 
 var currentInterviewBubble = 0;
