@@ -25,7 +25,7 @@ function loadInterviewBlocks(interviews){
         var pfpDiv = document.createElement('div');
         pfpDiv.id = interview[1].toLowerCase().replace(/\s/g, '-');
         pfpDiv.classList.add('pfp-div');
-        pfpDiv.setAttribute('onclick', "showFullImage('" + interview[1] + "', '" + interview[3] + "')");
+        pfpDiv.setAttribute('onclick', "showFullImage('" + interview[1] + "')");
 
         var pfp = document.createElement('img');
         pfp.src = "images/thumbnails/" + interview[1].toLowerCase().replace(/\s/g, '-') + ".png";
@@ -53,26 +53,34 @@ function loadInterviewBlocks(interviews){
         // will have all info if date has passed, otherwise show countdown
         if(dateInfo <= Date.now()){
             // add video component
-            var vid = document.createElement('iframe');
-            vid.width = 560;
-            vid.height = 315;
-            vid.title = interview[1];
-            vid.src = interview[2];
-            vid.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-            vid.referrerPolicy = "strict-origin-when-cross-origin";
-            vid.allowFullscreen = true;
+            if(interview[2] != undefined && interview[2] != "#"){
+                var vid = document.createElement('iframe');
+                vid.width = 560;
+                vid.height = 315;
+                vid.title = interview[1];
+                vid.src = interview[2];
+                vid.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                vid.referrerPolicy = "strict-origin-when-cross-origin";
+                vid.allowFullscreen = true;
 
-            var videoContainer = document.createElement('div');
-            videoContainer.classList.add('interview-video-container');
-            videoContainer.appendChild(vid);
-            interviewBlock.appendChild(videoContainer);
-
-            // add buttons with links // TODO: make embed instead
-            var fullInterviewButton = document.createElement('button');
-            fullInterviewButton.classList.add('filled-button');
-            fullInterviewButton.innerText = "Full Interview"
-            fullInterviewButton.setAttribute('onclick', "goToURL('" + interview[3] + "')");
-            interviewBlock.appendChild(fullInterviewButton);
+                var videoContainer = document.createElement('div');
+                videoContainer.classList.add('interview-video-container');
+                videoContainer.appendChild(vid);
+                interviewBlock.appendChild(videoContainer);
+            }
+            // add audio component
+            if(interview[3] != undefined) {
+                var interviewEmbed = document.createElement('iframe')
+                interviewEmbed.style = "margin-top: 12px; border-radius: 12px"
+                interviewEmbed.src = interview[3]
+                interviewEmbed.width = "100%"
+                interviewEmbed.height = "152"
+                interviewEmbed.frameBorder = "0"
+                interviewEmbed.allowFullscreen = ""
+                interviewEmbed.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                interviewEmbed.loading = "lazy"
+                interviewBlock.appendChild(interviewEmbed)
+            }
         } else {
             // timer countdown
             var availableIn = document.createElement('h3');
@@ -97,7 +105,7 @@ function loadInterviewBlocks(interviews){
     interviewContainer.classList.toggle("hidden");
 }
 
-function showFullImage(name, audioLink) {
+function showFullImage(name) {
     document.getElementById('popup-img').setAttribute('src', "images/tiles/" + name.toLowerCase().replace(/\s/g, '-') + ".png");
     document.getElementById('popup-img').setAttribute('alt', name);
     document.getElementById('popup').classList.toggle('hidden');
