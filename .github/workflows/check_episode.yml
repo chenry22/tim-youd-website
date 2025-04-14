@@ -1,0 +1,29 @@
+name: Spotify Podcast Upload Checker
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/20 * * * *'  # every 20 minutes
+
+jobs:
+  check-new-episode:
+    runs-on: ubuntu-latest
+
+    env:
+      SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+      SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r spotify_watcher/requirements.txt
+
+      - name: Run script
+        run: python spotify_watcher/watcher.py
