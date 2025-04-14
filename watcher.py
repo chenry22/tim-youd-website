@@ -33,24 +33,23 @@ def get_episodes(token, last_id):
     episodes = []
     for item in data['items']:
         if not item is None:
-            if item['id'] != last_id:
+            if item['id'] == last_id:
                 break
             else:
                 episodes.append(item)
     return episodes
 
 def main():
-    print("STARTING MAIN")
     response = requests.get(GOOGLE_SHEET_ENDPOINT, params = {"get": "last_episode_id"})
-    print("GETTING CACHED ID")
+    print("- CACHED ID -")
     print("Status:", response.status_code)
     print("Response:", response.text)
     stored_id = response.text.strip()
 
     token = get_access_token(CLIENT_ID, CLIENT_SECRET)
-    print("Got spotify access token!")
+    print("Got spotify access token!", token)
     new_episodes = get_episodes(token, stored_id)
-    print("Got new episodes list!")
+    print("Got new episodes list!", len(new_episodes))
 
     if len(new_episodes) > 0:
         for episode in reversed(new_episodes):
