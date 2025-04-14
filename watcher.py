@@ -4,7 +4,6 @@ import os
 # essentially, running this will get up to 20 newly uploaded interviews to update
 # and post them to the google sheet, which will be read by the live site
 
-CACHE_FILE = "last_episode.txt"
 GOOGLE_SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxx-NZ96PYfr-f9bCb-gAu4QFJQ8TL2krCMI2BoNp_egQnY-v_WWkfUS3_iZKuajvS4/exec"
 
 CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
@@ -41,6 +40,7 @@ def get_episodes(token, last_id):
     return episodes
 
 def main():
+    print("STARTING MAIN")
     response = requests.get(GOOGLE_SHEET_ENDPOINT, params = {"get": "last_episode_id"})
     print("GETTING CACHED ID")
     print("Status:", response.status_code)
