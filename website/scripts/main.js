@@ -1,10 +1,11 @@
 const interviewBubbleWidth = 200;
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const interviewees = ["Amy Smith-Stewart", "Ed Park", "Ginger Shulick Porcella", "Brian Boucher", 
-    "MK Guth", "Julia Whitehead", "Marie Schley", "Hannah Griggs & Shanna Early", 
-    "Claudia Parducci", "Liesl Olson", "Mat Gleason", "Abel Alejandre", 
-    "Bethany Ball", "Richard Polt", "Ashley Olson", "Allison C Meier", 
-    "Maritza Lacayo", "Carolina Miranda", "Cristin Tierney"
+    "Julia Whitehead", "MK Guth", "Marie Schley", "Hannah Griggs & Shanna Early", 
+    "Claudia Parducci", "Liesl Olson", "Bethany Ball", "Abel Alejandre", 
+    "Ashley Olson", "Richard Polt", "Dominic Quagliozzi", "Marybeth Reilly McGreen", 
+    "Ken Kinsley", "Paul Bright", "Allison C Meier", "Mat Gleason", 
+    "Carolina Miranda", "Maritza Lacayo", "Merve Emre", "Cristin Tierney"
 ];
 
 var currentInterviewBubble = 0;
@@ -16,12 +17,14 @@ function createInterviewBubbles() {
     for(var i = 0; i < interviewees.length; i++){
         var name = interviewees[i];
         var interviewBubble = document.createElement('div');
-        interviewBubble.classList.add("interview-bubble")
+        interviewBubble.classList.add("interview-bubble");
 
         var img = document.createElement('img');
         img.classList.add("interview-thumbnail");
-        img.src = "/images/thumbnails/" + name.toLowerCase().replace(/\s/g, '-') + ".png";
+        
+        img.src = "./images/thumbnails/" + name.toLowerCase().replace(/\s/g, '-') + ".png";
         img.alt = name;
+        img.setAttribute('onerror', "this.onerror=null; this.src='./images/book_cover.png';");
 
         var interviewCard = document.createElement('div');
         interviewCard.classList.add("interview-card");
@@ -42,10 +45,12 @@ function showFullImage(name) {
     // toggle image overlay (toggle hidden attribute)
     document.getElementById('popup-img').setAttribute('src', "images/tiles/" + name.toLowerCase().replace(/\s/g, '-') + ".png");
     document.getElementById('popup-img').setAttribute('alt', name);
+    document.getElementById('popup-img').setAttribute('onerror', "this.onerror=null; this.src='./images/book_cover.png';");
     document.getElementById('popup').classList.toggle('hidden');
 }
 function closeFullImage() {
     document.getElementById('popup').classList.toggle('hidden');
+    document.getElementById('popup-img').setAttribute('src', '');
 }
 
 function moveInterviewRow(left) {

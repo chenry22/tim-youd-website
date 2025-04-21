@@ -30,6 +30,7 @@ function loadInterviewBlocks(interviews){
         var pfp = document.createElement('img');
         pfp.src = "images/thumbnails/" + interview[1].toLowerCase().replace(/\s/g, '-') + ".png";
         pfp.alt = interview[1];
+        pfp.setAttribute('onerror', "this.onerror=null; this.src='./images/book_cover.png';");
         pfp.classList.add("interview-block-thumbnail");
         var toggleFull = document.createElement('i');
         toggleFull.classList.add("fa-solid", "fa-up-right-and-down-left-from-center");
@@ -108,10 +109,12 @@ function loadInterviewBlocks(interviews){
 function showFullImage(name) {
     document.getElementById('popup-img').setAttribute('src', "images/tiles/" + name.toLowerCase().replace(/\s/g, '-') + ".png");
     document.getElementById('popup-img').setAttribute('alt', name);
+    document.getElementById('popup-img').setAttribute('onerror', "this.onerror=null; this.src='./images/book_cover.png';");
     document.getElementById('popup').classList.toggle('hidden');
 }
 function closeFullImage() {
     document.getElementById('popup').classList.toggle('hidden');
+    document.getElementById('popup-img').setAttribute('src', '');
 }
 
 // given countdown html var, update with current
