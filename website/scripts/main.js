@@ -5,7 +5,11 @@ const interviewees = ["Amy Smith-Stewart", "Ed Park", "Ginger Shulick Porcella",
     "Claudia Parducci", "Liesl Olson", "Bethany Ball", "Abel Alejandre", 
     "Ashley Olson", "Richard Polt", "Dominic Quagliozzi", "Marybeth Reilly McGreen", 
     "Ken Kinsley", "Paul Bright", "Allison C Meier", "Mat Gleason", 
-    "Carolina Miranda", "Maritza Lacayo", "Merve Emre", "Cristin Tierney"
+    "Corinne Erni", "Clint Margrave", "Carolina Miranda", "Misa Jeffereis",
+    "Maritza Lacayo", "Merve Emre", "Cristin Tierney", "Raquel Allegra",
+    "Jan Garden Castro", "Floyd Hall", "Jen Logan Meyer",
+    "Shamim Momin", "Mary Jo Bang", "Molly Elkin", "Joel Minda",
+    "Tayari Jones", "Veronica Roberts"
 ];
 
 var currentInterviewBubble = 0;
